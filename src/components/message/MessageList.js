@@ -1,8 +1,13 @@
+// A component to display (currently all) messages to DOM.
+// Written by Colten M.
+
 import React, { useState, useEffect } from 'react';
-import { getAllMessages } from "../../modules/MessageManager";
+import { useHistory } from 'react-router-dom';
+import { getAllMessages } from "../MessageManager";
 
 export const MessageList = () => {
     const [messages, setMessages] = useState([]);
+    const history = useHistory();
 
     const getMessages = () => {
         return getAllMessages().then(messagesFromAPI => {
@@ -10,18 +15,27 @@ export const MessageList = () => {
         });
     };
 
-    // const deleteAndSetOwners = (id) => {
-    //     deleteOwner(id)
-    //         .then(() => getAllOwners().then(setOwners))
-    // }
-
     useEffect(() => {
         getMessages();
     }, []);
 
     return (
         <>
-            {messages.map(message => <div id='{message.id}'>{message.message}<br></br>Sent By {message.user.name}<br></br><br></br></div>)}
+            <button type="button"
+                    onClick={() => { history.push("/messages/post")}}>Post A New Message</button>
+            {messages.map(message => (
+            
+            <div    key={message.id}
+                    id={message.id}>
+                        {message.message}
+                        <br></br>
+                        Sent By {message.user.name}
+                        <br></br>
+                        <button>Edit--This Does Nothing</button>
+                        <button>Delete--This Does Nothing</button>
+                        <br></br>
+                        <br></br>
+            </div>))}
         </>
     );
 }
