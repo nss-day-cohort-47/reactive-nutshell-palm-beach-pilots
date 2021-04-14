@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { } from './modules/FriendsManager';
+import { } from '../../modules/FriendsManager';
 import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getUsers } from "./modules/FriendsManager";
+import { getUsers } from "../../modules/FriendsManager";
 import { Hint } from "react-autocomplete-hint";
 
 
@@ -13,7 +13,6 @@ export const FriendsDetail = () => {
     //const history = useHistory();
     const handleClick = (e) => {
         e.preventDefault();
-        console.log("add a Friend")
     };
     useEffect(() => {
         getUsers()
