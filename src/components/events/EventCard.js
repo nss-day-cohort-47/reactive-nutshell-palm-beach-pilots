@@ -1,3 +1,5 @@
+//   ***  
+
 import React from 'react';
 import { Link } from "react-router-dom";
 
@@ -10,14 +12,19 @@ export const  EventCard = ({ event, deleteEvent, isLoading }) => {
         <p>Event Date: {event.eventDate}</p>
         <p>Event Location: {event.location}</p>
         <Link to={`events/${event.id}/edit`}>
-          <button>Edit</button>
+          <button className="btn btn-primary">Edit</button>
         </Link>
         <Link to={`events/${event.id}/weather`}>
-          <button>Show Weather</button>
+          <button className="btn btn-secondary">Show Weather</button>
         </Link>
-        <button type="button" disabled={isLoading} onClick={() => deleteEvent(event.id)}>
-            Delete Event
-            </button>
+        <button
+          type="button"
+          className="btn btn-primary"
+          disabled={isLoading}
+          onClick={() => deleteEvent(event.id)}
+        >
+          Delete Event
+        </button>
       </div>
     );
 

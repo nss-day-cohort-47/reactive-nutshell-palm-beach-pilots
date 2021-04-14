@@ -27,12 +27,14 @@ export const EventList = () => {
         getEvents()
         .then(() => setIsLoading(false))
     }, []);
-    console.log(currUser)
+    // console.log(currUser)
+    // console.log(events)
     return (
       <>
         <section>
           <button
             type="button"
+            className="btn btn-primary"
             id="addEvent"
             onClick={() => {
               history.push("events/create");
@@ -51,8 +53,7 @@ export const EventList = () => {
                 deleteEvent={deleteEvent}
                 isLoading={isLoading}
               />
-            ))
-            }
+            ))}
         </div>
       </>
     );

@@ -87,7 +87,9 @@ const handleSaveEvent = (event) => {
           />
         </div>
       </fieldset>
-      <button className="" onClick={handleSaveEvent}>Save New Event</button>
+      <button className="btn btn-primary" onClick={handleSaveEvent}>
+        Save New Event
+      </button>
     </form>
   );
 };
