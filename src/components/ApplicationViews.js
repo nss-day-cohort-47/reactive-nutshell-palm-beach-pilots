@@ -1,11 +1,13 @@
-import React from "react"
-import { Route } from "react-router-dom"
+import React from "react";
+import { Route } from "react-router-dom";
+import { FriendsCard } from "./friends/FriendsCard";
 
 export const ApplicationViews = () => {
   return (
     <>
 
       <Route exact path="/">
+        <FriendsCard />
         {/* Render the component for news articles */}
       </Route>
       <Route path="/friends">
