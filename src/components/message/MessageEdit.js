@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useParams, useHistory } from "react-router-dom"
-import { getMessageById, updateMessage } from "../MessageManager";
+import { getMessageById, updateMessage } from "../../modules/MessageManager";
 
 export const MessageEdit = () => {
     const [message, setMessage] = useState({ messagetxt: "" });

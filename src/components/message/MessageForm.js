@@ -1,6 +1,6 @@
 // A component to display message entry form.
 // Written by Colten M.
-import { addMessage } from "../MessageManager"
+import { addMessage } from "../../modules/MessageManager"
 import { useState } from "react"
 import { useHistory } from "react-router";
 
