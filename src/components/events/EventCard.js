@@ -9,8 +9,15 @@ export const  EventCard = ({ event, deleteEvent, isLoading }) => {
         <h3>
           Event: <span> {event.name}</span>
         </h3>
-        <p>Event Date: {event.eventDate}</p>
-        <p>Event Location: {event.location}</p>
+        <p>
+          <strong>Event Date:</strong> {event.eventDate}
+        </p>
+        <h5>Event Location: </h5>
+        <p>{event.address}</p>
+        <p>
+          {event.city},{event.state} {event.zipcode}
+        </p>
+
         <Link to={`events/${event.id}/edit`}>
           <button className="btn btn-primary">Edit</button>
         </Link>

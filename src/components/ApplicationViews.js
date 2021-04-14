@@ -4,7 +4,7 @@ import { MessageForm } from "./message/MessageForm"
 import { MessageList } from "./message/MessageList"
 import { MessageEdit } from "./message/MessageEdit"
 import { FriendsCard } from "./friends/FriendsCard";
-import { Weather } from "./weather/Weather.js";
+// import { Weather } from "./weather/Weather.js";
 import { EventForm } from "./events/EventForm.js";
 import { EventList } from "./events/EventList.js";
 
