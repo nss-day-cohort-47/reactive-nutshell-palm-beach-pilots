@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getAllMessages } from "../MessageManager";
+import { MessageCard } from './MessageCard';
 
 export const MessageList = () => {
     const [messages, setMessages] = useState([]);
@@ -22,20 +23,11 @@ export const MessageList = () => {
     return (
         <>
             <button type="button"
-                    onClick={() => { history.push("/messages/post")}}>Post A New Message</button>
-            {messages.map(message => (
-            
-            <div    key={message.id}
-                    id={message.id}>
-                        {message.message}
-                        <br></br>
-                        Sent By {message.user.name}
-                        <br></br>
-                        <button>Edit--This Does Nothing</button>
-                        <button>Delete--This Does Nothing</button>
-                        <br></br>
-                        <br></br>
-            </div>))}
+                onClick={() => { history.push("/messages/post") }}>Post A New Message</button>
+            <div>{messages.map(message => <MessageCard
+                key={message.id}
+                message={message} />)}
+            </div>
         </>
-    );
+    )
 }

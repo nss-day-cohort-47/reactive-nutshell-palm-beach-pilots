@@ -31,3 +31,14 @@ export const addMessage = (newMessage) => {
         body: JSON.stringify(newMessage)
     }).then(response => response.json())
 }
+
+//* A function to update an edited message.
+export const updateMessage  = (editedMessage) => {
+    return fetch(`${remoteURL}/messages/${editedMessage.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(editedMessage)
+    }).then(data => data.json());
+}

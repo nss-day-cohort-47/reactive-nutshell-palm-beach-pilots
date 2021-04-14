@@ -7,7 +7,7 @@ import { useHistory } from "react-router";
 // userId will be sessionStorage.getItem("nutshell_user")
 export const MessageForm = () => {
     const [message, setMessage] = useState({
-        message: "", 
+        messagetxt: "", 
         userId: parseInt(sessionStorage.getItem("nutshell_user")), 
         friendId:0
     });
