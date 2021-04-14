@@ -1,11 +1,13 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { FriendsCard } from "./friends/FriendsCard";
+import { Weather } from "./weather/Weather.js";
+import { EventForm } from "./events/EventForm.js";
+import { EventList } from "./events/EventList.js";
 
 export const ApplicationViews = () => {
   return (
     <>
-
       <Route exact path="/">
         <FriendsCard />
         {/* Render the component for news articles */}
@@ -19,9 +21,12 @@ export const ApplicationViews = () => {
       <Route path="/tasks">
         {/* Render the component for the user's tasks */}
       </Route>
-      <Route path="/events">
-        {/* Render the component for the user's events */}
+      <Route exact path="/events">
+        {<EventList />}
       </Route>
+      <Route path="/events/create">{<EventForm />}</Route>
+      <Route path="/events/:eventId(\d+)/edit"></Route>
+      <Route path="/events/:eventId(\d+)/weather"></Route>
     </>
-  )
+  );
 }
