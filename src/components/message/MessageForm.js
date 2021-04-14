@@ -4,12 +4,14 @@ import { addMessage } from "../MessageManager"
 import { useState } from "react"
 import { useHistory } from "react-router";
 
-// userId will be sessionStorage.getItem("nutshell_user")
+// userId will be sessionStorage.getItem("nutshell_user"), aka the currentUser
 export const MessageForm = () => {
+    const currentUser = parseInt(sessionStorage.getItem("nutshell_user"));
+
     const [message, setMessage] = useState({
         messagetxt: "", 
-        userId: parseInt(sessionStorage.getItem("nutshell_user")), 
-        friendId:0
+        userId: currentUser, 
+        friendId: ""
     });
 
     const [isLoading, setIsLoading] = useState(false);
@@ -18,8 +20,8 @@ export const MessageForm = () => {
 
     //* Function that handles changes to the form.
     const handleControlledInputChange = (e) => {
-        // Create a new message with the modified animal.
-        const newMessage = {...message};
+        // Create a new message with the modified message.
+        const newMessage = { ...message };
         // Create a variable to hold the selected value.
         let selectedValue = e.target.value;
         // Assign that value to the object.
@@ -36,19 +38,19 @@ export const MessageForm = () => {
     const handleClickPost = (e) => {
         // Prevent page from refreshing.
         e.preventDefault()
-
+        // Add a message to the database.
         addMessage(message)
+        // Push 
             .then(() => history.push("/messages"))
     }
 
-    //TODO INVOKE FUNCTION TO GET FRIEND BY NAME THEN RETURN ID
     return (
         <form className="messageForm">
             <h2 className="messageForm__title">New Message</h2>
             <fieldset>
-                <textarea type="textarea" id="message" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Say what you want..."/>
+                <textarea type="textarea" id="messagetxt" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Say what you want..."/>
             </fieldset>
-            <input type="hidden" name="userId" value={sessionStorage.getItem("nutshell_user")}></input>
+            <input type="hidden" name="userId" value={currentUser}></input>
             <button className="btn btn-primary"
                 onClick={handleClickPost}>
                 Send

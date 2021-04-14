@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { getAllMessages } from "../MessageManager";
+import { deleteMessage, getAllMessages } from "../MessageManager";
 import { MessageCard } from './MessageCard';
 
 export const MessageList = () => {
@@ -16,6 +16,13 @@ export const MessageList = () => {
         });
     };
 
+    const deleteAndSetMessages = (messageId) => {
+        console.log("messageId is", messageId)
+        deleteMessage(messageId)
+            .then(() => getAllMessages()
+                .then(setMessages))
+    }
+
     useEffect(() => {
         getMessages();
     }, []);
@@ -26,7 +33,8 @@ export const MessageList = () => {
                 onClick={() => { history.push("/messages/post") }}>Post A New Message</button>
             <div>{messages.map(message => <MessageCard
                 key={message.id}
-                message={message} />)}
+                message={message} 
+                deleteAndSetMessages={deleteAndSetMessages} />)}
             </div>
         </>
     )

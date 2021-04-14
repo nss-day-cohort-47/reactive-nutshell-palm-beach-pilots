@@ -42,3 +42,10 @@ export const updateMessage  = (editedMessage) => {
         body: JSON.stringify(editedMessage)
     }).then(data => data.json());
 }
+
+//* Delete a message from the database.
+export const deleteMessage = (messageId) => {
+    return fetch(`${remoteURL}/messages/${messageId}`, {
+        method: "DELETE"
+    }).then(res => res.json())
+}
