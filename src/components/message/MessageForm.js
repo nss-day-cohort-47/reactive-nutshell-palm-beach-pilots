@@ -11,7 +11,8 @@ export const MessageForm = () => {
     const [message, setMessage] = useState({
         messagetxt: "", 
         userId: currentUser, 
-        friendId: ""
+        recepientId: 0,
+        timestamp: Date.now()
     });
 
     const [isLoading, setIsLoading] = useState(false);

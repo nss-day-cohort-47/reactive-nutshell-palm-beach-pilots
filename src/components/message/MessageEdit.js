@@ -24,7 +24,7 @@ export const MessageEdit = () => {
             id: message.id,
             messagetxt: message.messagetxt,
             userId: message.userId,
-            friendId: message.friendId
+            recepientId: message.recepientId
         }
     
         updateMessage(editedMessage)
