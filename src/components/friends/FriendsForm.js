@@ -11,11 +11,11 @@ export const FriendsForm = () =>{
 
 
     useEffect(() => {
-        getFriends(getCurrentUser())
-            .then(userlist => {
-                setFriendsList(userlist);
-                return friendsList;
-            })
+        // getFriends(getCurrentUser())
+        //     .then(userlist => {
+        //         setFriendsList(userlist);
+        //         return friendsList;
+        //     })
     })
 
     return ``;

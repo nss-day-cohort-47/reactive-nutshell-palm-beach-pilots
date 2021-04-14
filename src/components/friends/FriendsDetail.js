@@ -19,7 +19,7 @@ export const FriendsDetail = () => {
             .then(userlist => {
                 setuserNames(userlist);
             })
-    })
+    },[])
 
 
     return (
