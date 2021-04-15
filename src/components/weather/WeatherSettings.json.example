@@ -1,3 +1,0 @@
-export const settings = {
-  weatherKey: "(Your openweather API key goes inbetween quotes)",
-};

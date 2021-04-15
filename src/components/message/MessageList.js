@@ -17,7 +17,6 @@ export const MessageList = () => {
     };
 
     const deleteAndSetMessages = (messageId) => {
-        console.log("messageId is", messageId)
         deleteMessage(messageId)
             .then(() => getAllMessages()
                 .then(setMessages))
