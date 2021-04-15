@@ -1,20 +1,10 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
 import "./friends.css";
-import { FriendsDetail } from "./FriendsDetail"
-import { FriendsForm } from "./FriendsForm";
-export const FriendsCard = () => {
+export const FriendsCard = ({ friend, handleDel }) => {
+  return (
+      <div  className="friendslist" ><span className="friendName">{friend.user.name}</span> <a href="#" id={friend.id} className="friendBtn" onClick={() => handleDel(friend.id)} > remove friend</a></div> 
 
-    const history = useHistory();
-
-    return (
-        <div>
-            <div className="card">
-                <FriendsDetail />
-            </div>
-            <div className="card">
-                <FriendsForm />
-            </div>
-        </div>
-    );
+  );
 }
+//onClick={handleDel(friend.id)}
+// <li className="friendslist" key={friend.id}>{friend.user.name} <a href="" id={friend.id} className="friendBtn" onClick={handleDeleteFriend(friend.id)} > remove friend</a></li>    <button type="button" onClick={handleDeleteFriend(friend.id)}>Discharge</button>

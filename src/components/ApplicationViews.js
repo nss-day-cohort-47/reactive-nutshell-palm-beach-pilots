@@ -3,7 +3,7 @@ import { Route } from "react-router-dom"
 import { MessageForm } from "./message/MessageForm"
 import { MessageList } from "./message/MessageList"
 import { MessageEdit } from "./message/MessageEdit"
-import { FriendsCard } from "./friends/FriendsCard";
+import { FriendsList } from "./friends/FriendsList";
 // import { Weather } from "./weather/Weather.js";
 import { EventForm } from "./events/EventForm.js";
 import { EventList } from "./events/EventList.js";
@@ -13,12 +13,13 @@ export const ApplicationViews = () => {
   return (
     <>
       <Route exact path="/">
-        <FriendsCard />
+       
         {/* Render the component for news articles */}
       </Route>
 
       <Route path="/friends">
-        {/* Render the component for list of friends */}
+        {/* Render the component for list of friends */} 
+        <FriendsList />
       </Route>
 
       <Route exact path="/messages">
