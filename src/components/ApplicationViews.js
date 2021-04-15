@@ -4,9 +4,10 @@ import { MessageForm } from "./message/MessageForm"
 import { MessageList } from "./message/MessageList"
 import { MessageEdit } from "./message/MessageEdit"
 import { FriendsCard } from "./friends/FriendsCard";
-import { Weather } from "./weather/Weather.js";
+// import { Weather } from "./weather/Weather.js";
 import { EventForm } from "./events/EventForm.js";
 import { EventList } from "./events/EventList.js";
+import { EditEvent } from "./events/EventEdit.js"
 
 export const ApplicationViews = () => {
   return (
@@ -44,7 +45,7 @@ export const ApplicationViews = () => {
       </Route>
 
       <Route path="/events/create">{<EventForm />}</Route>
-      <Route path="/events/:eventId(\d+)/edit"></Route>
+      <Route path="/events/:eventId(\d+)/edit">{<EditEvent />}</Route>
       <Route path="/events/:eventId(\d+)/weather"></Route>
     </>
   );
