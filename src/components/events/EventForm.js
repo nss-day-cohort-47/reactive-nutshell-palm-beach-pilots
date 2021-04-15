@@ -44,7 +44,8 @@ const handleSaveEvent = (e) => {
     <form>
       <fieldset>
         <div>
-          <label htmlFor="name"> Event Name </label>
+          <h4> Event Name</h4>
+          <label htmlFor="name"></label>
           <input
             type="text"
             id="name"
@@ -59,7 +60,8 @@ const handleSaveEvent = (e) => {
       </fieldset>
       <fieldset>
         <div>
-          <label htmlFor="date"> Event Date </label>
+          <h5> Event Date</h5>
+          <label htmlFor="date"></label>
           <input
             type="date"
             id="eventDate"
@@ -67,14 +69,15 @@ const handleSaveEvent = (e) => {
             required
             autoFocus
             className="event-form"
-            placeholder="Event name"
+            placeholder="Event Date"
             value={event.eventDate}
           />
         </div>
       </fieldset>
+      <h5>Event Location:</h5>
       <fieldset>
         <div>
-          <label htmlFor="address"> Address </label>
+          <label htmlFor="address"></label>
           <input
             type="text"
             id="address"
@@ -87,20 +90,20 @@ const handleSaveEvent = (e) => {
       </fieldset>
       <fieldset>
         <div>
-          <label htmlFor="city"> City </label>
+          <label htmlFor="city"></label>
           <input
             type="text"
             id="city"
             onChange={handleControlledInputChange}
             className="event-form"
-            placeholder="city"
+            placeholder="City"
             value={event.city}
           />
         </div>
       </fieldset>
       <fieldset>
         <div>
-          <label htmlFor="state"> State </label>
+          <label htmlFor="state"></label>
           <input
             type="text"
             id="state"
@@ -113,14 +116,14 @@ const handleSaveEvent = (e) => {
       </fieldset>
       <fieldset>
         <div>
-          <label htmlFor="zipcode"> ZipCode </label>
+          <label htmlFor="zipcode"></label>
           <input
             type="text"
             id="zipcode"
             onChange={handleControlledInputChange}
             className="event-form"
             placeholder="Zipcode"
-            value={+(event.zipcode)}
+            value={event.zipcode}
           />
         </div>
       </fieldset>
