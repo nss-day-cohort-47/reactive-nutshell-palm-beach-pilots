@@ -66,8 +66,16 @@
     display: flex;
     justify-content: space-evenly;
 }
-
+.articlecard{
+  margin: 2rem;
+}
 .friendName{
   width: 20rem;
   text-align: left;
+}
+
+.article_section{
+  background-color: cornsilk;
+  border-color: rgba(14, 13, 13, 0.836);
+  border-radius: 2rem;
 }
