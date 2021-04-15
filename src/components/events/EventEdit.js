@@ -10,7 +10,7 @@ export const EditEvent = () => {
   const [isLoading, setIsLoading] = useState(false);
     
 
-  console.log(event);
+  // console.log(event);
   const history = useHistory();
   const {eventId} = useParams();
 

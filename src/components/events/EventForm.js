@@ -16,10 +16,10 @@ export const EventForm = () => {
     city: "",
     state: "",
     zipcode: "",
-    timestamp: Date.now()
+    timestamp: ""
   });
 
-  console.log(event)
+  // console.log(event)
   const history = useHistory();
 
   const handleControlledInputChange =(e) => {
@@ -31,8 +31,13 @@ export const EventForm = () => {
 
 const handleSaveEvent = (e) => {
     e.preventDefault()
-    // event.timestamp = Date.now()
-    if(event.name === "" ||event.eventDate === "" || event.address === "" ||event.city === "" || event.state === "" || event. zipcode === "" ) {
+    event.timestamp = Date.now()
+    if(event.name === "" ||
+      event.eventDate === "" ||
+      event.address === "" ||
+      event.city === "" || 
+      event.state === "" || 
+      event.zipcode === "" ) {
       window.alert("Please fill out all event information")
     } else {
       addEvent(event)

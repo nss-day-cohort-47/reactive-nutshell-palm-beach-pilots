@@ -5,34 +5,55 @@ import React, { useState, useEffect } from "react";
 import { EventCard } from "./EventCard.js";
 import {
   getAllEvents,
-  getEventsById,
   removeEvent,
 } from "../../modules/EventManager.js";
 import { useHistory } from "react-router";
+import { getFriends } from "../../modules/FriendsManager.js";
 
 export const EventList = () => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [friends, setFriends] = useState([]);
 
   const history = useHistory();
   const currUser = +sessionStorage.getItem("nutshell_user");
 
+  const getUsersFriends = () => {
+   return getFriends()
+  .then(friendsFromAPI => {
+  return  setFriends(friendsFromAPI)
+    // console.log(friendsFromAPI)
+  })
+  
+  }
+  
+  
+  
   const getEvents = () => {
-    return getAllEvents().then((eventsFromAPI) => {
-      // let userEvents =
+    return getAllEvents()
+    .then((eventsFromAPI) => {
+      console.log(eventsFromAPI)
       setEvents(eventsFromAPI);
     });
   };
-
+  
   const deleteEvent = (id) => {
     removeEvent(id).then(getEvents);
   };
-
+  
   useEffect(() => {
-    getEvents().then(() => setIsLoading(false));
+    getUsersFriends()
+    getEvents()
+    .then(() => setIsLoading(false));
   }, []);
-  // console.log(currUser)
-  // console.log(events)
+  
+  // useEffect(() => {
+    //   .then(() => console.log(friends))
+    // }, [])
+    
+    // console.log(currUser)
+    // console.log(events)
+    console.log(friends)
   return (
     <>
       <section>
@@ -49,7 +70,9 @@ export const EventList = () => {
       </section>
       <div>
         {events
-          .filter((event) => event.userId === currUser)
+          .filter(
+            (event) => event.userId === currUser 
+          )
           .map((event) => (
             <EventCard
               event={event}
