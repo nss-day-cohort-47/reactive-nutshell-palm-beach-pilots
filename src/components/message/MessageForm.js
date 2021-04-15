@@ -17,6 +17,7 @@ export const MessageForm = () => {
         timestamp: Date.now()
     });
 
+    //TODO IMPLEMENT THIS ASAP!
     const [isLoading, setIsLoading] = useState(false);
 
     const history = useHistory();
