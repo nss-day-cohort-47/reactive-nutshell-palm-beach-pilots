@@ -74,6 +74,22 @@ const handleSaveEvent = (e) => {
           />
         </div>
       </fieldset>
+      <fieldset>
+        <div>
+          <h5> Event Time</h5>
+          <label htmlFor="time"></label>
+          <input
+            type="time"
+            id="eventTime"
+            onChange={handleControlledInputChange}
+            required
+            autoFocus
+            className="event-form"
+            placeholder="Event Date"
+            value={event.eventTime}
+          />
+        </div>
+      </fieldset>
       <h5>Event Location:</h5>
       <fieldset>
         <div>
