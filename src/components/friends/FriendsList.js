@@ -14,10 +14,12 @@ export const FriendsList = () => {
     const [friendNames, setFriendNames] = useState([]);
     const [text, setText] = useState("");
     const history = useHistory();
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleDel = (id) => {
         deleteFriend(id)
-            .then(() => getFriends().then(setFriendNames));
+            .then(() => {getFriends().then(setFriendNames)
+                document.getElementById("enterFriendName").value =""});
     };
 
     const getAllFriends = () =>{
@@ -26,7 +28,6 @@ export const FriendsList = () => {
         });
     };
     const handleClick = (e) => {
-        alert("Click")
         e.preventDefault();
         const userId = document.getElementById("enterFriendName").value.split(' -- ')[1];
         const addNewFriend = { "currentId": parseInt(getCurrentUser()), "userId": parseInt(userId) };
@@ -35,12 +36,14 @@ export const FriendsList = () => {
                 getFriends().then(data => {
                     setFriendNames(data)
                     history.push("/friends")
+                    document.getElementById("enterFriendName").value =""
                 })
             })
     };
 
     useEffect(() => {
-        getUsers()
+        let id = parseInt(getCurrentUser());
+        getUsers(id)
             .then(userlist => {
                 let tmp = [];
                 userlist.map((item) => {
@@ -73,12 +76,12 @@ export const FriendsList = () => {
                                 value={text}
                                 onChange={e => setText(e.target.value)} />
                         </Hint>
-                        <a href="#" className="friendBtn" onClick={handleClick}>Add a friend</a>
+                        <a href="#" className="friendBtn"  disabled={isLoading} onClick={handleClick}>Add a friend</a>
                     </div>
                 </div>
                 <div className="card">
                     <section>
-                        <div className="friend_section"><h5>My Friends</h5></div>
+                        <div className="friend_section"><h6>My Friends</h6></div>
                          <div>
                         {friendNames.map(friend => 
                        

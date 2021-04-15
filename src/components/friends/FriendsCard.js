@@ -2,7 +2,7 @@ import React from "react";
 import "./friends.css";
 export const FriendsCard = ({ friend, handleDel }) => {
   return (
-      <div  className="friendslist" >{friend.user.name} <a href="#" id={friend.id} className="friendBtn" onClick={() => handleDel(friend.id)} > remove friend</a></div> 
+      <div  className="friendslist" ><span className="friendName">{friend.user.name}</span> <a href="#" id={friend.id} className="friendBtn" onClick={() => handleDel(friend.id)} > remove friend</a></div> 
 
   );
 }
