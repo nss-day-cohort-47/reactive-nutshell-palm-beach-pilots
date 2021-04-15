@@ -66,8 +66,41 @@
     display: flex;
     justify-content: space-evenly;
 }
-
+.articlecard{
+  margin: 2rem;
+}
 .friendName{
   width: 20rem;
   text-align: left;
+}
+.div_article__name{
+  border-color: #f2fedc;
+  border-style: inset;
+}
+.article_section{
+  background-color: cornsilk;
+  border-color: rgba(14, 13, 13, 0.836);
+  border-radius: 1rem;
+  margin:.5rem;
+}
+.btn_otherColor{
+  background-color: #f2fedc;
+}
+.btn_otherColor:hover {
+  color: rgb(9, 78, 9);
+  background-color: #a5ce59;
+  border-color: #9b8d11;
+}
+
+.btn_otherColor:focus{
+  color: rgb(9, 78, 9);
+  background-color: #a5ce59;
+  border-color: #9b8d11;
+  box-shadow: 0 0 0 0.2rem rgba(58, 176, 195, 0.5);
+}
+
+.btn_otherColor.disabled{
+  color: rgb(9, 78, 9);
+  background-color: #a5ce59;
+  border-color: #9b8d11;
 }

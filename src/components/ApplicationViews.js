@@ -8,12 +8,13 @@ import { Weather } from "./weather/Weather.js";
 import { EventForm } from "./events/EventForm.js";
 import { EventList } from "./events/EventList.js";
 import { EditEvent } from "./events/EventEdit.js"
+import { ArticlesList } from "./articles/ArticlesList"
 
 export const ApplicationViews = () => {
   return (
     <>
       <Route exact path="/">
-       <Weather />
+        <ArticlesList />
         {/* Render the component for news articles */}
       </Route>
 
