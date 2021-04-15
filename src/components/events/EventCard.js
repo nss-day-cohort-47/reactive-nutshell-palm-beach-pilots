@@ -15,7 +15,7 @@ export const  EventCard = ({ event, deleteEvent, isLoading }) => {
         <h5>Event Location: </h5>
         <p>{event.address}</p>
         <p>
-          {event.city},{event.state} {event.zipcode}
+          {event.city}, {event.state} {event.zipcode}
         </p>
 
         <Link to={`events/${event.id}/edit`}>
