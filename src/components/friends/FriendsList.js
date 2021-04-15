@@ -31,6 +31,7 @@ export const FriendsList = () => {
         e.preventDefault();
         const userId = document.getElementById("enterFriendName").value.split(' -- ')[1];
         const addNewFriend = { "currentId": parseInt(getCurrentUser()), "userId": parseInt(userId) };
+        if(userId){
         addFriend(addNewFriend)
             .then(() => {
                 getFriends().then(data => {
@@ -39,6 +40,7 @@ export const FriendsList = () => {
                     document.getElementById("enterFriendName").value =""
                 })
             })
+        }
     };
 
     useEffect(() => {
