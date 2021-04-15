@@ -6,7 +6,7 @@ export const getAllEvents = () => {
     .then(response => response.json())
 }
 
-export const getEventsById = (id) => {
+export const getEventById = (id) => {
   return fetch(`${remoteURL}/events/${id}`)
   .then((response) => response.json());
 };
@@ -30,7 +30,7 @@ export const addEvent = (newEvent) => {
 };
 
 export const editEvent = (editedEvent) => {
-  return fetch(`${remoteURL}/events`, {
+  return fetch(`${remoteURL}/events/${editedEvent.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
