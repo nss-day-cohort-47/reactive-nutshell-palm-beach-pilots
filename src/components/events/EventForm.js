@@ -11,6 +11,7 @@ export const EventForm = () => {
     userId: currUser,
     name: "",
     eventDate: "",
+    eventTime: "",
     address: "",
     city: "",
     state: "",
