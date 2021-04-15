@@ -3,18 +3,46 @@
 
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { deleteMessage, getAllMessages } from "../../modules/MessageManager";
+import { deleteMessage, getAllMessages, getMessageByUser, getMessageByPublic, getMessagesByRecieved } from "../../modules/MessageManager";
 import { MessageCard } from './MessageCard';
 
 export const MessageList = () => {
+    const currentUser = parseInt(sessionStorage.getItem("nutshell_user"));
+
+    const [userMessages, setUserMessages] = useState([]);
+    const [publicMessages, setPublicMessages] = useState([]);
+    const [receivedMessages, setReceivedMessages] = useState([]);
+
     const [messages, setMessages] = useState([]);
+
     const history = useHistory();
 
-    const getMessages = () => {
-        return getAllMessages().then(messagesFromAPI => {
-            setMessages(messagesFromAPI);
-        });
-    };
+    // Get User Messages
+    useEffect(() => {
+        getMessageByUser(currentUser)
+            .then(userMessagesFromAPI => {
+                setUserMessages(userMessagesFromAPI)
+                console.log("userMessages", userMessagesFromAPI);
+            })
+    }, []);
+
+    // Get Public Messages
+    useEffect(() => {
+        getMessageByPublic()
+            .then(publicMessagesFromAPI => {
+                setPublicMessages(publicMessagesFromAPI)
+                console.log("publicMessages", publicMessagesFromAPI);
+            })
+    }, []);
+
+    // Get Recieved Messages
+    useEffect(() => {
+        getMessagesByRecieved(currentUser)
+            .then(recievedMessagesFromAPI => {
+                setReceivedMessages(recievedMessagesFromAPI)
+                console.log("recievedMessages", recievedMessagesFromAPI);
+            })
+    }, []);
 
     const deleteAndSetMessages = (messageId) => {
         deleteMessage(messageId)
@@ -23,8 +51,18 @@ export const MessageList = () => {
     }
 
     useEffect(() => {
-        getMessages();
+        const combinedArray = [...userMessages, ...publicMessages, ...receivedMessages]
+        let completeMessages = [];
+
+        combinedArray.forEach(message => {
+            if (!completeMessages.includes(message)) {
+                completeMessages.push(message);
+            }
+        })
+        console.log(completeMessages)
+        setMessages(completeMessages);
     }, []);
+
 
     return (
         <>
@@ -32,7 +70,7 @@ export const MessageList = () => {
                 onClick={() => { history.push("/messages/post") }}>Post A New Message</button>
             <div>{messages.map(message => <MessageCard
                 key={message.id}
-                message={message} 
+                message={message}
                 deleteAndSetMessages={deleteAndSetMessages} />)}
             </div>
         </>
