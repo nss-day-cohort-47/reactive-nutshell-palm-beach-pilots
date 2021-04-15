@@ -8,12 +8,13 @@ import { FriendsList } from "./friends/FriendsList";
 import { EventForm } from "./events/EventForm.js";
 import { EventList } from "./events/EventList.js";
 import { EditEvent } from "./events/EventEdit.js"
+import { ArticlesList } from "./articles/ArticlesList"
 
 export const ApplicationViews = () => {
   return (
     <>
       <Route exact path="/">
-       
+        <ArticlesList />
         {/* Render the component for news articles */}
       </Route>
 
