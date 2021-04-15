@@ -11,6 +11,7 @@ export const EventForm = () => {
     userId: currUser,
     name: "",
     eventDate: "",
+    eventTime: "",
     address: "",
     city: "",
     state: "",
@@ -71,6 +72,22 @@ const handleSaveEvent = (e) => {
             className="event-form"
             placeholder="Event Date"
             value={event.eventDate}
+          />
+        </div>
+      </fieldset>
+      <fieldset>
+        <div>
+          <h5> Event Time</h5>
+          <label htmlFor="time"></label>
+          <input
+            type="time"
+            id="eventTime"
+            onChange={handleControlledInputChange}
+            required
+            autoFocus
+            className="event-form"
+            placeholder="Event Date"
+            value={event.eventTime}
           />
         </div>
       </fieldset>

@@ -13,6 +13,9 @@ export const EventCard = ({ event, deleteEvent, isLoading }) => {
       <p>
         <strong>Event Date:</strong> {event.eventDate}
       </p>
+      <p>
+        <strong>Event Time:</strong> {event.eventTime}
+      </p>
       <h5>Event Location: </h5>
       <p>{event.address}</p>
       <p>
