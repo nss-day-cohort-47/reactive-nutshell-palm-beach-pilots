@@ -43,9 +43,9 @@ export const MessageForm = () => {
         //  First, we make sure there is an `@` preceding the string.
         if (selectedValue.startsWith(`@`)) {
             // We then define our regular expression.  In this case, we are looking for a string /after/ the `@` and /before/ a whitespace.
-            let re = /(?<=\@)(.*?)(?=\s)/;
+            let regularExpression = /(?<=\@)(.*?)(?=\s)/;
             // We then create a new variable to hold the value after we matched it with the RegEx
-            let parsedName = selectedValue.match(re);
+            let parsedName = selectedValue.match(regularExpression);
             // For our code to compile, we must not run any of the code within this if statement unless parsedName is no longer a null value.
             if (parsedName !== null) {
                 // We are replacing the underscore from the input with a space, we are also "pulling out" the value, as it a single string held inside an array.
