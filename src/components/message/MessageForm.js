@@ -66,7 +66,6 @@ export const MessageForm = () => {
         setMessage(newMessage);
     }
 
-
     //* A function that saves the message object and posts it to the database.
     const handleClickPost = (e) => {
         // Prevent page from refreshing.

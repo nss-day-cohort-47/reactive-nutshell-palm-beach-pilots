@@ -52,17 +52,16 @@ export const MessageList = () => {
 
     useEffect(() => {
         const combinedArray = [...userMessages, ...publicMessages, ...receivedMessages]
-        let completeMessages = [];
 
-        combinedArray.forEach(message => {
-            if (!completeMessages.includes(message)) {
-                completeMessages.push(message);
-            }
-        })
-        console.log(completeMessages)
+        let completeMessages = combinedArray.filter((message, index, array) =>
+            index === array.findIndex((element) => (
+                element.id === message.id
+            ))
+        )
+
         setMessages(completeMessages);
-    }, []);
-
+        console.log(messages)
+    }, [userMessages, publicMessages, receivedMessages]);
 
     return (
         <>
