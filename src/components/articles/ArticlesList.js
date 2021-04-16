@@ -31,6 +31,10 @@ export const ArticlesList = () => {
             setArticles(FromAPI)
         });
     };
+    const cancelAddEdit = () =>{
+        setNoForm(true);
+        setToEdit(false);
+    }
     const handleClick = (e) => {
         e.preventDefault();
         setNoForm(false);
@@ -50,7 +54,8 @@ export const ArticlesList = () => {
                     {noForm === false && (
                         <ArticleForm key={1}
                                     toEdit={toEdit}
-                                    articleToEdit={articleToEdit}
+                                    articleToEdit={editOne}
+                                    cancelAddEdit={cancelAddEdit}
                                     />
                     )}
                     {noForm === true && (
@@ -68,8 +73,8 @@ export const ArticlesList = () => {
                             <ArticleCard
                                 key={article.id}
                                 article={article}
-                                handleDel={handleDel}
-                                handleEdit={handleEdit} />
+                                editOne={editOne} 
+                                />
 
                         )}
                     </div>

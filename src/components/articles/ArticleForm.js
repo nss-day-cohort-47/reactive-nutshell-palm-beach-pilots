@@ -9,7 +9,7 @@ import { ArticleCard } from './ArticleCard'
 import {getUsers} from '../../modules/FriendsManager'
 import { useHistory } from "react-router";
 
-export const ArticleForm = ({toEdit,articleToEdit,editOne,addOne}) =>{ //creates and logic for entering and editing Articles
+export const ArticleForm = ({toEdit,articleToEdit,editOne,addOne, cancelAddEdit}) =>{ //creates and logic for entering and editing Articles
 
     const [article,setArticle] = useState({
         title: "",
@@ -27,7 +27,9 @@ export const ArticleForm = ({toEdit,articleToEdit,editOne,addOne}) =>{ //creates
 		let imageURL = "";
 		// forms always provide values as strings. But we want to save the ids as numbers.
 	}
-
+    const editArticle = (e) =>{
+        alert("edit article")
+    }
     const addArticle = (e) =>{
         alert("add article")
     }
@@ -68,7 +70,7 @@ return(
             <a href="#" id="upd__"{...article.id} className="friendBtn btn_otherColor" onClick={()=>{editOne(1)}}>Update Article</a>
         )
         }    
-            <a href="#" id="cancel__"{...article.id} className="friendBtn btn_Cancel" >Cancel</a>
+            <a href="#" id="cancel__"{...article.id} className="friendBtn btn_Cancel"  onClick={()=>{cancelAddEdit()}}>Cancel</a>
 
         </div>
     </form>
