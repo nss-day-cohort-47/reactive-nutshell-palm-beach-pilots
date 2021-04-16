@@ -3,6 +3,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
+import {getWeatherZip} from "../../modules/WeatherManager";
 
 export const EventCard = ({ event, deleteEvent, isLoading }) => {
   return (
@@ -26,7 +27,14 @@ export const EventCard = ({ event, deleteEvent, isLoading }) => {
         <button className="btn btn-primary">Edit</button>
       </Link>
       <Link to={`events/${event.id}/weather`}>
-        <button className="btn btn-secondary">Show Weather</button>
+        <button 
+        type="button"
+        className="btn btn-secondary"
+        onClick={() => 
+          
+            console.log(getWeatherZip(event.zipcode))}
+        >Show Weather
+        </button>
       </Link>
       <button
         type="button"

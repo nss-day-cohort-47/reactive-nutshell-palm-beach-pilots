@@ -3,8 +3,8 @@ const remoteURL = "http://localhost:8088";
 
 export const getAllEvents = (id) => {
   if (id) {
-    // return fetch(`${remoteURL}/events/?_expand=`)
-    // .then(response => response.json()
+    // return fetch(`${remoteURL}/events?userId=${id}&_expand=user`)
+    // .then(response => response.json())
   } else {
     return fetch(`${remoteURL}/events`)
     .then(response => response.json())

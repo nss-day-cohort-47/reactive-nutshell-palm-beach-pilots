@@ -2,13 +2,21 @@ import React, {useState, useEffect} from 'react'
 
 import {  getWeatherZip } from '../../modules/WeatherManager'
 
-export const Weather = () => {
 
+export const Weather = (zip) => {
+  
+    // const[zipcode, setZipcode] = useState()
     const [weather, setWeather] = useState({"weather": [{}]})
    
+    // if (zip) {
+    //   setZipcode(zip)
+    // } else {
+    //   setZipcode(37204)
+    // }
 
     useEffect(() => {
-        getWeatherZip(37067)
+      
+        getWeatherZip(37204)
         .then((weather) => {
             
             console.log(weather)
