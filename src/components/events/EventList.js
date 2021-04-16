@@ -11,6 +11,7 @@ import { useHistory } from "react-router";
 import { getFriends } from "../../modules/FriendsManager.js";
 
 export const EventList = () => {
+  const [allEvents, setAllEvents] = useState([]);
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [friends, setFriends] = useState([]);
@@ -33,8 +34,12 @@ export const EventList = () => {
     return getAllEvents()
     .then((eventsFromAPI) => {
       console.log(eventsFromAPI)
-      setEvents(eventsFromAPI);
-    });
+     return setAllEvents(eventsFromAPI);
+    })
+    .then(() => {
+      return setEvents(allEvents.filter((event) => 
+      event.userId === currUser))
+    })
   };
   
   const deleteEvent = (id) => {
@@ -70,9 +75,9 @@ export const EventList = () => {
       </section>
       <div>
         {events
-          .filter(
-            (event) => event.userId === currUser 
-          )
+          // .filter(
+          //   (event) => event.userId === currUser 
+          // )
           .map((event) => (
             <EventCard
               event={event}
