@@ -9,6 +9,7 @@ import { EventForm } from "./events/EventForm.js";
 import { EventList } from "./events/EventList.js";
 import { EditEvent } from "./events/EventEdit.js"
 import { ArticlesList } from "./articles/ArticlesList"
+import { TaskList } from "./task/TaskList"
 
 export const ApplicationViews = () => {
   return (
@@ -41,6 +42,7 @@ export const ApplicationViews = () => {
 
       <Route path="/tasks">
         {/* Render the component for the user's tasks */}
+        <TaskList />
       </Route>
       
       <Route exact path="/events">

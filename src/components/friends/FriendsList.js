@@ -84,9 +84,9 @@ export const FriendsList = () => {
                 <div className="card">
                     <section>
                         <div className="friend_section"><h6>My Friends</h6></div>
-                         <div>
+                        <div>
                         {friendNames.map(friend => 
-                       
+
                                 <FriendsCard
                                 key={friend.id}
                                     friend={friend}
