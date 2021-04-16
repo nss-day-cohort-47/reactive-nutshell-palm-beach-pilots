@@ -9,7 +9,7 @@ import { ArticleCard } from './ArticleCard'
 import {getUsers} from '../../modules/FriendsManager'
 import { useHistory } from "react-router";
 
-export const ArticleForm = () =>{ //creates and logic for entering and editing Articles
+export const ArticleForm = ({toEdit,articleToEdit,editOne,addOne}) =>{ //creates and logic for entering and editing Articles
 
     const [article,setArticle] = useState({
         title: "",
@@ -26,19 +26,22 @@ export const ArticleForm = () =>{ //creates and logic for entering and editing A
 		let targetId = event.target.id;
 		let imageURL = "";
 		// forms always provide values as strings. But we want to save the ids as numbers.
-
-		/* Animal is an object with properties.
-		Set the property to the new value
-		using object bracket notation. */
-		//newAnimal[targetId] = selectedVal
-		// update state
-		//setAnimal(newAnimal)
 	}
 
+    const addArticle = (e) =>{
+        alert("add article")
+    }
 return(
-    <div  className="articlecard" >
+    
+    <div className="articlecard">
     <form className="articleForm">
-        <h3>Enter Article</h3>
+        {toEdit === false &&(
+            <h4>Enter Article</h4>
+        )}
+        {toEdit === true&&(
+            <h4>Edit Article</h4>
+        )
+        }
         <fieldset>
             <div className="form-group">
                 <label>Article:</label>
@@ -58,13 +61,18 @@ return(
             </div>
         </fieldset>
         <div className="friend_section">
-            <a href="#" id="edit__"{...article.id} className="friendBtn btn_otherColor">Save Article</a>
-            <a href="#" id="upd__"{...article.id} className="friendBtn btn_otherColor">Update Article</a>
+        {toEdit === false &&(
+            <a href="#" id="edit__"{...article.id} className="friendBtn btn_otherColor" onClick={addArticle} >Save Article</a>
+        )}
+        {toEdit === true&&(
+            <a href="#" id="upd__"{...article.id} className="friendBtn btn_otherColor" onClick={()=>{editOne(1)}}>Update Article</a>
+        )
+        }    
             <a href="#" id="cancel__"{...article.id} className="friendBtn btn_Cancel" >Cancel</a>
 
         </div>
     </form>
 </div>)
-// onClick={() => handleEdit(article.id)} onClick={() => handleDel(article.id)} 
+//
 
 }
