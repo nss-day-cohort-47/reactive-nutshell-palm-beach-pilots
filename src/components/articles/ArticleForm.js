@@ -36,6 +36,7 @@ export const ArticleForm = () =>{ //creates and logic for entering and editing A
 	}
 
 return(
+    <div  className="articlecard" >
     <form className="articleForm">
         <h3>Enter Article</h3>
         <fieldset>
@@ -63,7 +64,7 @@ return(
 
         </div>
     </form>
-)
+</div>)
 // onClick={() => handleEdit(article.id)} onClick={() => handleDel(article.id)} 
 
 }
