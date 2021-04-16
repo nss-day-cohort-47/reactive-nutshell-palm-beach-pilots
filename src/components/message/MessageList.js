@@ -1,6 +1,7 @@
 // A component to display (currently all) messages to DOM.
 // Written by Colten M.
 
+import { render } from '@testing-library/react';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { deleteMessage, getMessageByUser, getMessageByPublic, getMessagesByRecieved } from "../../modules/MessageManager";
@@ -11,13 +12,11 @@ export const MessageList = () => {
     const [messages, setMessages] = useState([]);
     const history = useHistory();
 
-    //!=========================================================================================
-    //!=====================================REFACTOR BELOW?=====================================
-    //!=========================================================================================
-
     const [userMessages, setUserMessages] = useState([]);
     const [publicMessages, setPublicMessages] = useState([]);
     const [receivedMessages, setReceivedMessages] = useState([]);
+    const [refresh, setRefresh] = useState(false);
+    const [renderFlag, setRenderFlag] = useState(false);
 
     const combineFilterAndParseArrays = () => {
 
@@ -41,47 +40,60 @@ export const MessageList = () => {
     }
 
     const getAndSetMessages = () => {
-    return getMessageByUser(currentUser).then(
-        function (response) {
-            setUserMessages(response)
-            return response;
-        }).then((data) => {
-            return getMessageByPublic()
-        }).then((data) => {
-            setPublicMessages(data)
-            return getMessagesByRecieved(currentUser)
-                .then((data) => {
-                    setReceivedMessages(data)
-                })
-        })
+        return getMessageByUser(currentUser).then(
+            function (response) {
+                setUserMessages(response)
+                return response;
+            }).then((data) => {
+                return getMessageByPublic()
+            }).then((data) => {
+                setPublicMessages(data)
+                return getMessagesByRecieved(currentUser)
+                    .then((data) => {
+                        setReceivedMessages(data)
+                    })
+            })
     }
 
-useEffect(() => {
-    getAndSetMessages();
-}, []);
+    // Will check the local variable
+    setInterval(function countUp() {
+        setRenderFlag(window.localStorage.getItem("re-render flag"))
+        if(refresh){
+            setRefresh(false)
+        } else {
+            setRefresh(true)
+        }
+    }, 10000)
 
-useEffect(() => {
-    combineFilterAndParseArrays();
-}, [receivedMessages])
+    useEffect(() => {
+        if (renderFlag){
+        getAndSetMessages();
+        window.localStorage.setItem("re-render flag", false)
+        }
+    }, [refresh]);
 
-//!=========================================================================================
-//!=====================================REFACTOR ABOVE?=====================================
-//!=========================================================================================
+    useEffect(() => {
+        getAndSetMessages();
+    }, []);
 
-const deleteAndSetMessages = (messageId) => {
-    deleteMessage(messageId)
-        .then(getAndSetMessages)
-}
+    useEffect(() => {
+        combineFilterAndParseArrays();
+    }, [receivedMessages])
 
-return (
-    <>
-        <button type="button"
-            onClick={() => { history.push("/messages/post") }}>Post A New Message</button>
-        <div>{messages.map(message => <MessageCard
-            key={message.id}
-            message={message}
-            deleteAndSetMessages={deleteAndSetMessages} />)}
-        </div>
-    </>
-)
+    const deleteAndSetMessages = (messageId) => {
+        deleteMessage(messageId)
+            .then(getAndSetMessages)
+    }
+
+    return (
+        <>
+            <button type="button"
+                onClick={() => { history.push("/messages/post") }}>Post A New Message</button>
+            <div>{messages.map(message => <MessageCard
+                key={message.id}
+                message={message}
+                deleteAndSetMessages={deleteAndSetMessages} />)}
+            </div>
+        </>
+    )
 }

@@ -75,8 +75,8 @@ export const MessageForm = () => {
         addMessage(message)
             // Push 
             .then(() => history.push("/messages"))
+            window.localStorage.setItem("re-render flag", true)
     }
-
 
     return (
         <form className="messageForm">
