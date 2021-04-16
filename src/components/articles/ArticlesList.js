@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { getArticles} from "../../modules/ArticlesManager";
 // import { getCurrentUser } from '../helper/helperFunctions';
 import { ArticleCard } from './ArticleCard'
+import {ArticleForm} from "./ArticleForm"
 // import { render } from '@testing-library/react';
 import {getUsers} from '../../modules/FriendsManager'
 import { useHistory } from "react-router";
@@ -16,11 +17,16 @@ export const ArticlesList = () => {
     const history = useHistory();
     const [isLoading, setIsLoading] = useState(true);
 
-    const handleDel = (id) => {
+    const handleDel = (id) => {  // handle the deletion of any Articles
+        alert("Handle Delete Article");
         // deleteFriend(id)
         //     .then(() => {getFriends().then(setArticles)
         //         document.getElementById("enterFriendName").value =""});
     };
+    const handleEdit = (id) =>{  //Handle the edit function
+        alert("Handle Edit Article");
+
+    }
 
     const getAllArticles = () =>{
         return getArticles().then(FromAPI =>{
@@ -62,17 +68,19 @@ export const ArticlesList = () => {
             })},[]); 
     return (
         <div>
-            {/* <section className="friends">
+            <section className="friends">
                 <div>
-                    <div className="clickbtn">
+                    <ArticleForm />
+                    {/* <div className="clickbtn">
                         <Hint options={userNames} allowTabFill>
                             <input id="enterFriendName"
                                 value={text}
                                 onChange={e => setText(e.target.value)} />
                         </Hint>
                         <a href="#" className="friendBtn"  disabled={isLoading} onClick={handleClick}>Add a friend</a>
-                    </div>
-                </div>*/}
+                    </div> */}
+                </div>
+                </section>
                 <div className="card">
                     <section>
                         <div className="friend_section"><h6>Articles</h6></div>
@@ -81,7 +89,8 @@ export const ArticlesList = () => {
                                 <ArticleCard
                                 key={article.id}
                                     article={article}
-                                    handleDel={handleDel} />
+                                    handleDel={handleDel} 
+                                    handleEdit={handleEdit}/>
                         
                         )}
                         </div>
