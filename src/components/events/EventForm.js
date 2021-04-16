@@ -16,10 +16,10 @@ export const EventForm = () => {
     city: "",
     state: "",
     zipcode: "",
-    timestamp: Date.now()
+    timestamp: ""
   });
 
-  console.log(event)
+  // console.log(event)
   const history = useHistory();
 
   const handleControlledInputChange =(e) => {
@@ -29,10 +29,20 @@ export const EventForm = () => {
     setEvent(newEvent)
   }
 
+const cancelAdd = (e) => {
+  e.preventDefault();
+  history.push("/events");
+};  
+
 const handleSaveEvent = (e) => {
     e.preventDefault()
-    // event.timestamp = Date.now()
-    if(event.name === "" ||event.eventDate === "" || event.address === "" ||event.city === "" || event.state === "" || event. zipcode === "" ) {
+    event.timestamp = Date.now()
+    if(event.name === "" ||
+      event.eventDate === "" ||
+      event.address === "" ||
+      event.city === "" || 
+      event.state === "" || 
+      event.zipcode === "" ) {
       window.alert("Please fill out all event information")
     } else {
       addEvent(event)
@@ -153,6 +163,9 @@ const handleSaveEvent = (e) => {
       /> */}
       <button className="btn btn-primary" onClick={handleSaveEvent}>
         Save New Event
+      </button>
+      <button type="button" className="btn btn-primary" onClick={cancelAdd}>
+        Cancel
       </button>
     </form>
   );

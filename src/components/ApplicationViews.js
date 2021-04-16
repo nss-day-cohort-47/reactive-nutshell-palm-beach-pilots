@@ -4,7 +4,7 @@ import { MessageForm } from "./message/MessageForm"
 import { MessageList } from "./message/MessageList"
 import { MessageEdit } from "./message/MessageEdit"
 import { FriendsList } from "./friends/FriendsList";
-// import { Weather } from "./weather/Weather.js";
+import { Weather } from "./weather/Weather.js";
 import { EventForm } from "./events/EventForm.js";
 import { EventList } from "./events/EventList.js";
 import { EditEvent } from "./events/EventEdit.js"
@@ -14,6 +14,7 @@ export const ApplicationViews = () => {
   return (
     <>
       <Route exact path="/">
+        <Weather zip="37067"/>
         <ArticlesList />
         {/* Render the component for news articles */}
       </Route>
