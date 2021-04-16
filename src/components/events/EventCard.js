@@ -4,10 +4,54 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {getWeatherZip} from "../../modules/WeatherManager";
+// import {getCurrentUser} from "../helper/helperFunctions.js"
+
 
 export const EventCard = ({ event, deleteEvent, isLoading }) => {
+  const currUser = +(sessionStorage.getItem("nutshell_user"));
+  console.log(currUser)
+  console.log(event.userId)
+  
+  if (currUser !== event.userId) {
+    return (
+      <div className="eventList">
+        <div className="eventCard">
+        <i>
+        <h3>
+          Event: <span> {event.name}</span>
+        </h3>
+        <p>
+          <strong>Event Date:</strong> {event.eventDate}
+        </p>
+        <p>
+          <strong>Event Time:</strong> {event.eventTime}
+        </p>
+        <h5>Event Location: </h5>
+        <p>{event.address}</p>
+        <p>
+          {event.city}, {event.state} {event.zipcode}
+        </p>
+        <Link to={`events/${event.id}/weather`}>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => console.log(getWeatherZip(event.zipcode))}
+          >
+            Show Weather
+          </button>
+        </Link>
+        </i>
+      </div>
+      </div>
+    );
+
+
+  } else {
   return (
-    <div>
+    
+    <div className="eventList">
+      <div className="eventCard">
+      
       <h3>
         Event: <span> {event.name}</span>
       </h3>
@@ -27,13 +71,12 @@ export const EventCard = ({ event, deleteEvent, isLoading }) => {
         <button className="btn btn-primary">Edit</button>
       </Link>
       <Link to={`events/${event.id}/weather`}>
-        <button 
-        type="button"
-        className="btn btn-secondary"
-        onClick={() => 
-          
-            console.log(getWeatherZip(event.zipcode))}
-        >Show Weather
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={() => console.log(getWeatherZip(event.zipcode))}
+        >
+          Show Weather
         </button>
       </Link>
       <button
@@ -44,6 +87,9 @@ export const EventCard = ({ event, deleteEvent, isLoading }) => {
       >
         Delete Event
       </button>
+      
+     </div>
     </div>
   );
 };
+}

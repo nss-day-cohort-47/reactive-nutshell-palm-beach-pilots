@@ -21,6 +21,11 @@ export const EditEvent = () => {
     stateToChange[e.target.id] = editedVal;
     setEvent(stateToChange);
   };
+  
+  const cancelEdit = (e) => {
+    e.preventDefault();
+    history.push("/events");
+  }
 
   const updateEvent = (e) => {
     e.preventDefault();
@@ -152,6 +157,13 @@ export const EditEvent = () => {
           onClick={updateEvent}
         >
           Save Edited Event
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={cancelEdit}
+        >
+          Cancel Edit
         </button>
       </form>
     );
