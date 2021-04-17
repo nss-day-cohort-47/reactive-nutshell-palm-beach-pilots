@@ -11,7 +11,6 @@ export const TaskList = () => {
 
     const getTasks = (currentUser) => {
         return getTasksByUser(currentUser).then(tasksFromAPI => {
-            console.log(tasksFromAPI)
                 setTasks(tasksFromAPI)
             });
     };
