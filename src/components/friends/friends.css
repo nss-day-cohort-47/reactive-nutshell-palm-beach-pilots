@@ -77,8 +77,15 @@
   border-color: #f2fedc;
   border-style: inset;
 }
-.article_section{
+.article_friend{
   background-color: cornsilk;
+  font-style: italic;
+  border-color: rgba(49, 45, 45, 0.39);
+  border-radius: 1rem;
+  margin:.5rem;
+}
+.article_owner{
+  background-color: rgb(245, 245, 245);
   border-color: rgba(14, 13, 13, 0.836);
   border-radius: 1rem;
   margin:.5rem;
@@ -104,6 +111,7 @@
   background-color: #a5ce59;
   border-color: #9b8d11;
 }
+
 .btn_Cancel{
   background-color: mediumvioletred;
 }

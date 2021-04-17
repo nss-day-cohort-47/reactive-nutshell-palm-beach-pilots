@@ -1,33 +1,50 @@
 import React, { useState, useEffect } from "react";
-
+import { useHistory } from "react-router";
+import {compareValues} from '../helper/helperFunctions';
 import "../friends/friends.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getArticles } from "../../modules/ArticlesManager";
-// import { getCurrentUser } from '../helper/helperFunctions';
+import { getArticles, deleteArticle,AddNewArticle,updateArticle } from "../../modules/ArticlesManager";
 import { ArticleCard } from './ArticleCard'
 import { ArticleForm } from "./ArticleForm"
 // import { render } from '@testing-library/react';
-import { getUsers } from '../../modules/FriendsManager'
-import { useHistory } from "react-router";
 import { findAllByTestId } from "@testing-library/dom";
 
 export const ArticlesList = () => {
     const [noForm, setNoForm] = useState(true);
     const [articles, setArticles] = useState([]);
     const [toEdit, setToEdit] = useState(false);
-    const articleToEdit = {userId: 0,title:"",synopsis:"",url:"",timestamp:0}
+    const [articleToEdit, setArticleToEdit] = useState({userId: 0,title:"",synopsis:"",url:"",timestamp:0});
     const handleDel = (id) => {  // handle the deletion of any Articles
-        alert("delete from articles list")
+        deleteArticle(id)
+        .then(() => {getArticles().then(setArticles)});
     };
-    const handleEdit = (id) => {  //Handle the edit function
+    const handleEdit = (article) => {  //Handle the edit function
+        setArticleToEdit(article);
         setToEdit(true);
         setNoForm(false);
     }
+    const addOne = (article) =>{
+        article.timestamp = Date.now();
+        AddNewArticle(article).then(() => {
+            getArticles().then(setArticles).then(() =>{
+                setNoForm(true);
+                setToEdit(false);
+            });
+        });
+    }
     const editOne = (article) => {
-        alert(JSON(article));
+        article.timestamp = Date.now();
+        updateArticle(article).then(()=>{
+            getArticles().then(setArticles).then(() =>{
+                setNoForm(true);
+                setToEdit(false);
+                setArticleToEdit({userId: 0,title:"",synopsis:"",url:"",timestamp:0});
+            });
+        });
     } 
     const getAllArticles = () => {
         return getArticles().then(FromAPI => {
+            FromAPI.sort(compareValues("timestamp", 'desc'))
             setArticles(FromAPI)
         });
     };
@@ -54,7 +71,9 @@ export const ArticlesList = () => {
                     {noForm === false && (
                         <ArticleForm key={1}
                                     toEdit={toEdit}
-                                    articleToEdit={editOne}
+                                    articleToEdit={articleToEdit}
+                                    editOne={editOne}
+                                    addOne={addOne}
                                     cancelAddEdit={cancelAddEdit}
                                     />
                     )}
@@ -73,9 +92,9 @@ export const ArticlesList = () => {
                             <ArticleCard
                                 key={article.id}
                                 article={article}
-                                editOne={editOne} 
+                                handleDel={handleDel} 
+                                handleEdit={handleEdit}
                                 />
-
                         )}
                     </div>
                 </section>
