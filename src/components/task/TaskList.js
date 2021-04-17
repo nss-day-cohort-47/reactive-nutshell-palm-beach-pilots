@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { deleteTask, getTasksByUser } from '../../modules/TaskManager.js';
+import { deleteTask, getTaskById, getTasksByUser, updateTask } from '../../modules/TaskManager.js';
 import { TaskCard } from '../task/TaskCard.js'
 
 export const TaskList = () => {
@@ -10,8 +10,8 @@ export const TaskList = () => {
     const history = useHistory();
 
     const getTasks = (currentUser) => {
-        return getTasksByUser(currentUser)
-            .then(tasksFromAPI => {
+        return getTasksByUser(currentUser).then(tasksFromAPI => {
+            console.log(tasksFromAPI)
                 setTasks(tasksFromAPI)
             });
     };
@@ -21,23 +21,34 @@ export const TaskList = () => {
             .then(() => getTasks().then(setTasks))
     };
 
+    const clickCheckBox = (id) => {
+        getTaskById(id)
+            .then((retrievedTask => {
+                if (retrievedTask.completed === true){
+                    retrievedTask.completed = false;
+                } else {
+                    retrievedTask.completed = true;
+                }
+                updateTask(retrievedTask);
+            }))
+    };
+
     useEffect(() => {
-        getTasks();
+        getTasks(currentUser);
     }, [])
 
-    console.log(tasks)
-
     return (
+
         <>
             <div className="container-cards">
                 {tasks.map(task => <TaskCard
                     key={task.id}
                     task={task}
+                    clickCheckBox={clickCheckBox}
                     deleteAndSetTasks={deleteAndSetTasks} />)}
             </div>
             <section className="section-content">
                 <button type="button"
-                    className="btn"
                     onClick={null}>Add Task</button>
             </section>
         </>
