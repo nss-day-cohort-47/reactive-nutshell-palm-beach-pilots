@@ -1,15 +1,17 @@
 //   ***  Component that displays list of Event cards to current users dashboard
-//     *****  Chad[well] Clark
+//     *****  Chad[well] Clark  2021
 
 import React, { useState, useEffect } from "react";
 import { EventCard } from "./EventCard.js";
 import { getAllEvents, removeEvent } from "../../modules/EventManager.js";
 import { useHistory } from "react-router";
 import { getFriends } from "../../modules/FriendsManager.js";
+import { getWeatherZip, getWeatherForecast } from "../../modules/WeatherManager.js";
 
 export const EventList = () => {
   const [allEvents, setAllEvents] = useState([]);
-  const [events, setEvents] = useState([]);
+  const [zipweather, setZipweather] = useState([]);
+  const [forecast, setForecast] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [friends, setFriends] = useState([]);
 
@@ -29,12 +31,12 @@ export const EventList = () => {
     All.push(friend.userId);
     return All;
   });
-  console.log("All", All);
+  // console.log("All", All);
 
   const getEvents = () => {
     return getAllEvents()
     .then((eventsFromAPI) => {
-      console.log(eventsFromAPI);
+      // console.log(eventsFromAPI);
       return setAllEvents(
         eventsFromAPI.sort((x, y) => {
           let a = new Date(x.eventDate),
@@ -43,15 +45,20 @@ export const EventList = () => {
         })
       );
     });
-    // .then(() => {
-    //   return setEvents(
-    //     allEvents.filter(
-    //       (event) => event.userId === currUser || All.includes(event.userId)
-    //       )
-    //       );
-
-    //     })
   };
+
+  
+  const getEventWeather = (zipcode) => {
+    getWeatherForecast(zipcode)
+    .then((response) => {
+      console.log("zip",response)
+      return response})
+      .then((res) => {
+        setForecast(res)
+        console.log(forecast)
+        return res
+      })
+  }
 
   const deleteEvent = (id) => {
     removeEvent(id)
@@ -64,10 +71,6 @@ export const EventList = () => {
     .then(() => setIsLoading(false));
   }, []);
 
-  // useEffect(() => {
-  //   getUsersFriends();
-
-  // }, []);
 
   return (
     <>
@@ -86,7 +89,7 @@ export const EventList = () => {
       <div>
         {allEvents
           .filter(
-            (event) => event.eventDate > new Date().toISOString().substr(0,10)
+            (event) => event.eventDate >= new Date().toISOString().substr(0,10)
           )
           .filter(
             (event) => event.userId === currUser || All.includes(event.userId)
@@ -97,6 +100,7 @@ export const EventList = () => {
               key={event.id}
               deleteEvent={deleteEvent}
               isLoading={isLoading}
+              getEventWeather={getEventWeather}
             />
           ))}
       </div>

@@ -17,7 +17,6 @@ export const EditEvent = () => {
   const handleFieldChange = (e) => {
     const stateToChange = { ...event };
     let editedVal = e.target.value;
-    
     stateToChange[e.target.id] = editedVal;
     setEvent(stateToChange);
   };
@@ -32,7 +31,7 @@ export const EditEvent = () => {
     setIsLoading(true);
     
     const editedEvent = {
-      id: eventId,
+      id: +(eventId),
       userId: event.userId,
       name: event.name,
       address: event.address,
@@ -55,117 +54,125 @@ export const EditEvent = () => {
     }, [eventId]);
     
     return (
-      <form>
-        <fieldset>
-          <div>
-            <h4> Event Name</h4>
-            <label htmlFor="name"></label>
-            <input
-              type="text"
-              id="name"
-              onChange={handleFieldChange}
-              required
-              autoFocus
-              className="event-form"
-              value={event.name}
-            />
-          </div>
-        </fieldset>
-        <fieldset>
-          <div>
-            <h5> Event Date</h5>
-            <label htmlFor="date"></label>
-            <input
-              type="date"
-              id="eventDate"
-              onChange={handleFieldChange}
-              required
-              autoFocus
-              className="event-form"
-              value={event.eventDate}
-            />
-          </div>
-        </fieldset>
-        <fieldset>
-          <div>
-            <h5> Event Time</h5>
-            <label htmlFor="date"></label>
-            <input
-              type="time"
-              id="eventTime"
-              onChange={handleFieldChange}
-              required
-              autoFocus
-              className="event-form"
-              value={event.eventTime}
-            />
-          </div>
-        </fieldset>
-        <h5>Event Location:</h5>
-        <fieldset>
-          <div>
-            <label htmlFor="address"></label>
-            <input
-              type="text"
-              id="address"
-              onChange={handleFieldChange}
-              className="event-form"
-              value={event.address}
-            />
-          </div>
-        </fieldset>
-        <fieldset>
-          <div>
-            <label htmlFor="city"></label>
-            <input
-              type="text"
-              id="city"
-              onChange={handleFieldChange}
-              className="event-form"
-              value={event.city}
-            />
-          </div>
-        </fieldset>
-        <fieldset>
-          <div>
-            <label htmlFor="state"></label>
-            <input
-              type="text"
-              id="state"
-              onChange={handleFieldChange}
-              className="event-form"
-              value={event.state}
-            />
-          </div>
-        </fieldset>
-        <fieldset>
-          <div>
-            <label htmlFor="zipcode"></label>
-            <input
-              type="text"
-              id="zipcode"
-              onChange={handleFieldChange}
-              className="event-form"
-              value={event.zipcode}
-            />
-          </div>
-        </fieldset>
-        <button
-          type="button"
-          disabled={isLoading}
-          className="btn btn-primary"
-          onClick={updateEvent}
-        >
-          Save Edited Event
-        </button>
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={cancelEdit}
-        >
-          Cancel Edit
-        </button>
-      </form>
+      <>
+        <div>
+          <form>
+            <div>
+            <fieldset>
+              <div>
+                <h4> Event Name</h4>
+                <label htmlFor="name"></label>
+                <input
+                  type="text"
+                  id="name"
+                  onChange={handleFieldChange}
+                  required
+                  autoFocus
+                  className="event-form"
+                  value={event.name}
+                />
+              </div>
+            </fieldset>
+            <fieldset>
+              <div>
+                <h5> Event Date</h5>
+                <label htmlFor="date"></label>
+                <input
+                  type="date"
+                  id="eventDate"
+                  onChange={handleFieldChange}
+                  required
+                  className="event-form"
+                  value={event.eventDate}
+                />
+              </div>
+            </fieldset>
+            <fieldset>
+              <div>
+                <h5> Event Time</h5>
+                <label htmlFor="time"></label>
+                <input
+                  type="time"
+                  id="eventTime"
+                  onChange={handleFieldChange}
+                  required
+                  className="event-form"
+                  value={event.eventTime}
+                />
+              </div>
+            </fieldset>
+            <h5>Event Location:</h5>
+            <fieldset>
+              <div>
+                <label htmlFor="address"></label>
+                <input
+                  type="text"
+                  id="address"
+                  onChange={handleFieldChange}
+                  required
+                  className="event-form"
+                  value={event.address}
+                />
+              </div>
+            </fieldset>
+            <fieldset>
+              <div>
+                <label htmlFor="city"></label>
+                <input
+                  type="text"
+                  id="city"
+                  onChange={handleFieldChange}
+                  required
+                  className="event-form"
+                  value={event.city}
+                />
+              </div>
+            </fieldset>
+            <fieldset>
+              <div>
+                <label htmlFor="state"></label>
+                <input
+                  type="text"
+                  id="state"
+                  onChange={handleFieldChange}
+                  required
+                  className="event-form"
+                  value={event.state}
+                />
+              </div>
+            </fieldset>
+            <fieldset>
+              <div>
+                <label htmlFor="zipcode"></label>
+                <input
+                  type="text"
+                  id="zipcode"
+                  onChange={handleFieldChange}
+                  required
+                  className="event-form"
+                  value={event.zipcode}
+                />
+              </div>
+            </fieldset>
+            </div>
+            <button
+              type="button"
+              disabled={isLoading}
+              className="btn btn-primary"
+              onClick={updateEvent}
+            >
+              Update Event
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={cancelEdit}
+            >
+              Cancel Edit
+            </button>
+          </form>
+        </div>
+      </>
     );
 
 };

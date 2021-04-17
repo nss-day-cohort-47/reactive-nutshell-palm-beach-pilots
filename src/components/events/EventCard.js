@@ -3,14 +3,13 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import {getWeatherZip} from "../../modules/WeatherManager";
-// import {getCurrentUser} from "../helper/helperFunctions.js"
 
 
-export const EventCard = ({ event, deleteEvent, isLoading }) => {
+
+export const EventCard = ({ event, deleteEvent, isLoading , getEventWeather}) => {
   const currUser = +(sessionStorage.getItem("nutshell_user"));
-  console.log(currUser)
-  console.log(event.userId)
+  // console.log(currUser)
+  // console.log(event.userId)
   
   if (currUser !== event.userId) {
     return (
@@ -31,15 +30,15 @@ export const EventCard = ({ event, deleteEvent, isLoading }) => {
         <p>
           {event.city}, {event.state} {event.zipcode}
         </p>
-        <Link to={`events/${event.id}/weather`}>
+        {/* <Link to={`events/${event.id}/weather`}> */}
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={() => console.log(getWeatherZip(event.zipcode))}
+            onClick={() => getEventWeather(event.zipcode)}
           >
             Show Weather
           </button>
-        </Link>
+        {/* </Link> */}
         </i>
       </div>
       </div>
@@ -70,15 +69,15 @@ export const EventCard = ({ event, deleteEvent, isLoading }) => {
       <Link to={`events/${event.id}/edit`}>
         <button className="btn btn-primary">Edit</button>
       </Link>
-      <Link to={`events/${event.id}/weather`}>
+      {/* <Link to={`events/${event.id}/weather`}> */}
         <button
           type="button"
           className="btn btn-secondary"
-          onClick={() => console.log(getWeatherZip(event.zipcode))}
+          onClick={() => getEventWeather(event.zipcode)}
         >
           Show Weather
         </button>
-      </Link>
+      {/* </Link> */}
       <button
         type="button"
         className="btn btn-primary"

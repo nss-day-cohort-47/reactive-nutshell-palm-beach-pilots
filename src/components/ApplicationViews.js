@@ -10,6 +10,7 @@ import { EventList } from "./events/EventList.js";
 import { EditEvent } from "./events/EventEdit.js"
 import { ArticlesList } from "./articles/ArticlesList"
 
+
 export const ApplicationViews = () => {
   return (
     <>
@@ -49,7 +50,7 @@ export const ApplicationViews = () => {
 
       <Route path="/events/create">{<EventForm />}</Route>
       <Route path="/events/:eventId(\d+)/edit">{<EditEvent />}</Route>
-      <Route path="/events/:eventId(\d+)/weather"></Route>
+      {/* <Route path="/events/:eventId(\d+)/weather"><EventWeather /></Route> */}
     </>
   );
 }
