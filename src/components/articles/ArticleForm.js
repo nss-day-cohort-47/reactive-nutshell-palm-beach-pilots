@@ -75,7 +75,7 @@ return(
         </fieldset>
         <fieldset>
             <div className="form-group">
-                <label>Recap:</label>
+                <label>Link to article:</label>
                 <input type="text" id="url" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Link to Article"  value={article.url}/>
             </div>
         </fieldset>
