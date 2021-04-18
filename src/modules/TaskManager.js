@@ -12,6 +12,16 @@ export const getTaskById = (id) => {
     .then(res => res.json())
 }
 
+export const addTask = (newTask) => {
+    return fetch(`${remoteURL}/tasks`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newTask)
+    }).then(response => response.json())
+}
+
 export const deleteTask = (id) => {
     return fetch(`${remoteURL}/tasks/${id}`, {
         method: "DELETE"

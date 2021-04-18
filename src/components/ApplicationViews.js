@@ -11,6 +11,7 @@ import { EditEvent } from "./events/EventEdit.js"
 import { ArticlesList } from "./articles/ArticlesList"
 import { TaskList } from "./task/TaskList"
 import { TaskEditForm } from "./task/TaskEdit"
+import { TaskForm } from "./task/TaskForm"
 
 export const ApplicationViews = () => {
   return (
@@ -44,6 +45,11 @@ export const ApplicationViews = () => {
       <Route exact path="/tasks">
         {/* Render the component for the user's tasks */}
         <TaskList />
+      </Route>
+
+      <Route path="/tasks/add">
+        {/* Render the component for the user's tasks */}
+        <TaskForm />
       </Route>
 
       <Route path="/tasks/:taskId(\d+)/edit/">
