@@ -17,7 +17,7 @@ export const TaskList = () => {
 
     const deleteAndSetTasks = (id) => {
         deleteTask(id)
-            .then(getTasks)
+            .then(getTasks(currentUser))
     };
 
     // const deleteAndSetTasks = (id) => {
@@ -39,7 +39,7 @@ export const TaskList = () => {
 
     useEffect(() => {
         getTasks(currentUser)
-    }, [tasks])
+    }, [])
 
     return (
         <>
