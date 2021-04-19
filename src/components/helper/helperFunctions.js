@@ -1,6 +1,10 @@
-export const getCurrentUser = () => {
-  return sessionStorage.getItem("nutshell_user");
+export const getCurrentUser =() =>{
+    return sessionStorage.getItem("nutshell_user");
 }
+
+export const parseDate = (dateString) => {
+    let splitDate = dateString.split(/\D/)
+    return new Date(splitDate[0], --splitDate[1], splitDate[2])
 
 export function compareValues(key, order = 'asc') { //function to use with the array.sort method see belown for examples
   return function innerSort(a, b) {
@@ -32,6 +36,4 @@ export function compareValues(key, order = 'asc') { //function to use with the a
 //     [{team: "Phillies", city: "Philadelphia"},{team: "Marlins", city: "Miami"},{team: "Astros", city: "Houston"},{team: "Braves", city: "Atlanta"}]
 //     testArray.sort(compareValues("team", "asc")) will sort by city ascending order
 //     [{team: "Astros", city: "Houston"}, {team: "Braves", city: "Atlanta"}, {team: "Marlins", city: "Miami"}, {team: "Phillies", city: "Philadelphia"}
-
-
 
