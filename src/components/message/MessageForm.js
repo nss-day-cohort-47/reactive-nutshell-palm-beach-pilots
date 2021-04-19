@@ -17,7 +17,6 @@ export const MessageForm = () => {
         timestamp: Date.now()
     });
 
-    //TODO IMPLEMENT THIS ASAP!
     const [isLoading, setIsLoading] = useState(false);
 
     const history = useHistory();
@@ -73,16 +72,13 @@ export const MessageForm = () => {
         e.preventDefault()
         // Add a message to the database.
         addMessage(message)
-            // Push 
-            .then(() => history.push("/messages"))
     }
 
 
     return (
         <form className="messageForm">
-            <h2 className="messageForm__title">New Message</h2>
             <fieldset>
-                <textarea type="textarea" id="messagetxt" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Say what you want..." />
+                <textarea type="textarea" id="messagetxt" onChange={handleControlledInputChange} required autoFocus className="form-control" />
             </fieldset>
             <input type="hidden" name="userId" value={currentUser}></input>
             <button className="btn btn-primary"

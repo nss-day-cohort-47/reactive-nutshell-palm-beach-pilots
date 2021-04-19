@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { deleteMessage, getMessageByUser, getMessageByPublic, getMessagesByRecieved } from "../../modules/MessageManager";
 import { MessageCard } from './MessageCard';
+import { MessageForm } from './MessageForm';
 
 export const MessageList = () => {
     const currentUser = parseInt(sessionStorage.getItem("nutshell_user"));
@@ -58,7 +59,7 @@ export const MessageList = () => {
 
 useEffect(() => {
     getAndSetMessages();
-}, []);
+}, [messages]);
 
 useEffect(() => {
     combineFilterAndParseArrays();
@@ -75,13 +76,12 @@ const deleteAndSetMessages = (messageId) => {
 
 return (
     <>
-        <button type="button"
-            onClick={() => { history.push("/messages/post") }}>Post A New Message</button>
         <div>{messages.map(message => <MessageCard
             key={message.id}
             message={message}
             deleteAndSetMessages={deleteAndSetMessages} />)}
         </div>
+        <MessageForm/>
     </>
 )
 }
