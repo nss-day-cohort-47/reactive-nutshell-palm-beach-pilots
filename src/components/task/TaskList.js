@@ -17,13 +17,8 @@ export const TaskList = () => {
 
     const deleteAndSetTasks = (id) => {
         deleteTask(id)
-            .then(getTasks(currentUser))
+            .then(() => getTasksByUser(currentUser).then(setTasks))
     };
-
-    // const deleteAndSetTasks = (id) => {
-    //     deleteTask(id)
-    //         .then(() => getTasks().then(setTasks))
-    // };
 
     const clickCheckBox = (id) => {
         getTaskById(id)

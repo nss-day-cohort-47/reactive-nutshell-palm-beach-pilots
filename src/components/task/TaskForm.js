@@ -22,7 +22,7 @@ export const TaskForm = () => {
         const newTask = { ...task };
         // Create a variable to hold the selected value.
         let selectedValue = event.target.value;
-        console.log(selectedValue)
+
         // Addes the id as the selectedValue as a key to the newTask object.
         newTask[event.target.id] = selectedValue;
 
