@@ -14,9 +14,28 @@ export const getMessageById = (messageId) => {
 //? Change later?
 export const getAllMessages = () => {
     return fetch(`${remoteURL}/messages/?_expand=user`)
-    .then(res => res.json())
+        .then(res => res.json())
+}
+//?===============================================================================
+//? What Messages Do We Need To Display Per Each User?
+// All Messages A User Is Responsible For (userId)
+export const getMessageByUser = (userId) => {
+    return fetch(`${remoteURL}/messages/?userId=${userId}&_expand=user`)
+        .then(res => res.json())
 }
 
+// All Public Messages //! Will Refactor To Only Show Friends Messages?
+export const getMessageByPublic = () => {
+    return fetch(`${remoteURL}/messages/?recepientId=0&_expand=user`)
+        .then(res => res.json())
+}
+
+// All Messages Directed At The User (recipientId)
+export const getMessagesByRecieved = (recipientId) => {
+    return fetch(`${remoteURL}/messages/?recepientId=${recipientId}&_expand=user`)
+        .then(res => res.json())
+}
+//?===============================================================================
 //* Add a message to the database.
 // With a message object.
 export const addMessage = (newMessage) => {
@@ -33,7 +52,7 @@ export const addMessage = (newMessage) => {
 }
 
 //* A function to update an edited message.
-export const updateMessage  = (editedMessage) => {
+export const updateMessage = (editedMessage) => {
     return fetch(`${remoteURL}/messages/${editedMessage.id}`, {
         method: "PUT",
         headers: {

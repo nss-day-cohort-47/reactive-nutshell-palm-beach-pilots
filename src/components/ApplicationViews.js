@@ -33,11 +33,6 @@ export const ApplicationViews = () => {
         <MessageList />
       </Route>
 
-      <Route path="/messages/post">
-        {/* Render the component for posting a message */}
-        <MessageForm />
-      </Route>
-
       <Route path="/messages/:messageId(\d+)/edit/">
         {/* Render the component for posting a message */}
         <MessageEdit />

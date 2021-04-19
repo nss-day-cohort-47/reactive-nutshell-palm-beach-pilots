@@ -5,6 +5,7 @@ export const getCurrentUser =() =>{
 export const parseDate = (dateString) => {
     let splitDate = dateString.split(/\D/)
     return new Date(splitDate[0], --splitDate[1], splitDate[2])
+
 }
 
 export function compareValues(key, order = 'asc') { //function to use with the array.sort method see belown for examples
