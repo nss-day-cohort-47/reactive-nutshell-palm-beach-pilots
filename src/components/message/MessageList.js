@@ -2,7 +2,6 @@
 // Written by Colten M.
 
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { deleteMessage, getMessageByUser, getMessageByPublic, getMessagesByRecieved } from "../../modules/MessageManager";
 import { MessageCard } from './MessageCard';
 import { MessageForm } from './MessageForm';
@@ -72,7 +71,8 @@ return (
             message={message}
             deleteAndSetMessages={deleteAndSetMessages} />)}
         </div>
-        <MessageForm/>
+        <MessageForm
+            getAndSetMessages={getAndSetMessages}/>
     </>
 )
 }

@@ -6,7 +6,7 @@ import { addMessage } from "../../modules/MessageManager"
 import { getAllUsers } from "../../modules/UserManager"
 
 // userId will be sessionStorage.getItem("nutshell_user"), aka the currentUser
-export const MessageForm = () => {
+export const MessageForm = ({getAndSetMessages}) => {
     const currentUser = parseInt(sessionStorage.getItem("nutshell_user"));
     const [users, setUsers] = useState([]);
 
@@ -18,8 +18,6 @@ export const MessageForm = () => {
     });
 
     const [isLoading, setIsLoading] = useState(false);
-
-    const history = useHistory();
 
     const getUsers = () => {
         return getAllUsers().then(usersFromAPI => {
@@ -72,13 +70,15 @@ export const MessageForm = () => {
         e.preventDefault()
         // Add a message to the database.
         addMessage(message)
+            .then(() => getAndSetMessages())
+        message.messagetxt = "";
     }
 
 
     return (
         <form className="messageForm">
             <fieldset>
-                <textarea type="textarea" id="messagetxt" onChange={handleControlledInputChange} required autoFocus className="form-control" />
+                <textarea type="textarea" id="messagetxt" onChange={handleControlledInputChange} value={message.messagetxt} required autoFocus className="form-control" />
             </fieldset>
             <input type="hidden" name="userId" value={currentUser}></input>
             <button className="btn btn-primary"
