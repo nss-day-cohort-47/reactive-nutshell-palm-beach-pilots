@@ -8,7 +8,6 @@ import { editEvent, getEventById } from "../../modules/EventManager.js";
 export const EditEvent = () => {
   const [event, setEvent] = useState({})
   const [isLoading, setIsLoading] = useState(false);
-    
 
   // console.log(event);
   const history = useHistory();

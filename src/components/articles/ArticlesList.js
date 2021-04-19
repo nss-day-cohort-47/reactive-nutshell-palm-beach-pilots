@@ -1,103 +1,106 @@
 import React, { useState, useEffect } from "react";
-
+import { useHistory } from "react-router";
+import {compareValues} from '../helper/helperFunctions';
 import "../friends/friends.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getArticles} from "../../modules/ArticlesManager";
-// import { getCurrentUser } from '../helper/helperFunctions';
+import { getArticles, deleteArticle,AddNewArticle,updateArticle } from "../../modules/ArticlesManager";
 import { ArticleCard } from './ArticleCard'
-import {ArticleForm} from "./ArticleForm"
+import { ArticleForm } from "./ArticleForm"
 // import { render } from '@testing-library/react';
-import {getUsers} from '../../modules/FriendsManager'
-import { useHistory } from "react-router";
+import { findAllByTestId } from "@testing-library/dom";
 
 export const ArticlesList = () => {
-    const [userNames, setuserNames] = useState([]);
+    const [noForm, setNoForm] = useState(true);
     const [articles, setArticles] = useState([]);
-    const [text, setText] = useState("");
-    const history = useHistory();
-    const [isLoading, setIsLoading] = useState(true);
-
+    const [toEdit, setToEdit] = useState(false);
+    const [articleToEdit, setArticleToEdit] = useState({userId: 0,title:"",synopsis:"",url:"",timestamp:0});
     const handleDel = (id) => {  // handle the deletion of any Articles
-        alert("Handle Delete Article");
-        // deleteFriend(id)
-        //     .then(() => {getFriends().then(setArticles)
-        //         document.getElementById("enterFriendName").value =""});
+        deleteArticle(id)
+        .then(() => {getArticles().then(setArticles)});
     };
-    const handleEdit = (id) =>{  //Handle the edit function
-        alert("Handle Edit Article");
-
+    const handleEdit = (article) => {  //Handle the edit function
+        setArticleToEdit(article);
+        setToEdit(true);
+        setNoForm(false);
     }
-
-    const getAllArticles = () =>{
-        return getArticles().then(FromAPI =>{
+    const addOne = (article) =>{
+        article.timestamp = Date.now();
+        AddNewArticle(article).then(() => {
+            getArticles().then(setArticles).then(() =>{
+                setNoForm(true);
+                setToEdit(false);
+            });
+        });
+    }
+    const editOne = (article) => {
+        article.timestamp = Date.now();
+        updateArticle(article).then(()=>{
+            getArticles().then(setArticles).then(() =>{
+                setNoForm(true);
+                setToEdit(false);
+                setArticleToEdit({userId: 0,title:"",synopsis:"",url:"",timestamp:0});
+            });
+        });
+    } 
+    const getAllArticles = () => {
+        return getArticles().then(FromAPI => {
+            FromAPI.sort(compareValues("timestamp", 'desc'))
             setArticles(FromAPI)
         });
     };
+    const cancelAddEdit = () =>{
+        setNoForm(true);
+        setToEdit(false);
+    }
     const handleClick = (e) => {
         e.preventDefault();
-        // const userId = document.getElementById("enterFriendName").value.split(' -- ')[1];
-        // const addNewFriend = { "currentId": parseInt(getCurrentUser()), "userId": parseInt(userId) };
-        // if(userId){
-        // addFriend(addNewFriend)
-        //     .then(() => {
-        //         getFriends().then(data => {
-        //             setFriendNames(data)
-        //             history.push("/friends")
-        //             document.getElementById("enterFriendName").value =""
-        //         })
-        //     })
-        // }
+        setNoForm(false);
+        setToEdit(false);
     };
-
-    // useEffect(() => {
-    //     let id = parseInt(getCurrentUser());
-    //     getUsers(id)
-    //         .then(userlist => {
-    //             let tmp = [];
-    //             userlist.map((item) => {
-    //                 tmp.push(item.name + " -- " + item.id.toString());
-    //             })
-    //             setuserNames(tmp);
-    //         })
-    // }, [])
 
     useEffect(() => {
         return getAllArticles().then(
-            function(response){
+            function (response) {
                 return response;
-            })},[]); 
+            })
+    }, []);
     return (
         <div>
             <section className="friends">
                 <div>
-                    <ArticleForm />
-                    {/* <div className="clickbtn">
-                        <Hint options={userNames} allowTabFill>
-                            <input id="enterFriendName"
-                                value={text}
-                                onChange={e => setText(e.target.value)} />
-                        </Hint>
-                        <a href="#" className="friendBtn"  disabled={isLoading} onClick={handleClick}>Add a friend</a>
-                    </div> */}
+                    {noForm === false && (
+                        <ArticleForm key={1}
+                                    toEdit={toEdit}
+                                    articleToEdit={articleToEdit}
+                                    editOne={editOne}
+                                    addOne={addOne}
+                                    cancelAddEdit={cancelAddEdit}
+                                    />
+                    )}
+                    {noForm === true && (
+                    <div className="clickbtn">
+                        <a href="#" className="friendBtn" onClick={handleClick}  >Add Article</a>
+                    </div> 
+                    )}
                 </div>
-                </section>
-                <div className="card">
-                    <section>
-                        <div className="friend_section"><h6>Articles</h6></div>
-                         <div className="articlecard">
-                         {articles.map(article => 
-                                <ArticleCard
+            </section>
+            <div className="card">
+                <section>
+                    <div className="friend_section"><h6>Articles</h6></div>
+                    <div className="articlecard">
+                        {articles.map(article =>
+                            <ArticleCard
                                 key={article.id}
-                                    article={article}
-                                    handleDel={handleDel} 
-                                    handleEdit={handleEdit}/>
-                        
+                                article={article}
+                                handleDel={handleDel} 
+                                handleEdit={handleEdit}
+                                />
                         )}
-                        </div>
-                    </section>
-                </div>
-           
+                    </div>
+                </section>
+            </div>
+
         </div>
     );
 }
-// </section> 
+// </section> onClick={handleClick}
