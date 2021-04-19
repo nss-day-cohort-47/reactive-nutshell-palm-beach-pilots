@@ -3,33 +3,34 @@
 
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
-import { getWeatherForecast } from "../../modules/WeatherManager.js";
+
 import { EventWeather } from "./EventWeather.js";
 
 
 
 export const EventCard = ({ event, deleteEvent, isLoading }) => {
-  const [forecast, setForecast] = useState([]);
+  
   const [eventWeatherButton, setEventWeatherButton] = useState(false);
   const currUser = +(sessionStorage.getItem("nutshell_user"));
 
-  const getEventWeather = (zipcode) => {
-    getWeatherForecast(zipcode)
-      .then((response) => {
-        
-        return response;
-      })
-      .then((res) => {
-        setForecast(res);
-        return res;
-      });
-  };
-  console.log(forecast)
+  // const getEventWeather = (zipcode) => {
+  //   getWeatherForecast(zipcode)
+  //     .then((response) => {
+  //       return response;
+  //     })
+  //     .then((res) => {
+  //       setForecast(...res.data);
+
+  //       return res;
+  //     })
+  //     .then(() => toggleWeatherButton());
+  // };
+  // console.log(forecast)
   // console.log(event.userId)
   
 
   const toggleWeatherButton = () => {
-    
+
     setEventWeatherButton(!eventWeatherButton)
     
   }
@@ -58,7 +59,7 @@ export const EventCard = ({ event, deleteEvent, isLoading }) => {
                   type="button"
                   className="btn btn-secondary"
                   onClick={() => {
-                    getEventWeather(event.zipcode);
+                    // getEventWeather(event.zipcode);
                     toggleWeatherButton();
                   }}
                 >
@@ -68,7 +69,7 @@ export const EventCard = ({ event, deleteEvent, isLoading }) => {
             ) : (
               <EventWeather
                 toggleWeatherButton={toggleWeatherButton}
-                forecast={forecast}
+                zipcode={event.zipcode}
                 eventDate={event.eventDate}
               />
             )}
@@ -105,7 +106,7 @@ export const EventCard = ({ event, deleteEvent, isLoading }) => {
               type="button"
               className="btn btn-secondary"
               onClick={() => {
-                getEventWeather(event.zipcode)
+                // getEventWeather(event.zipcode)
               toggleWeatherButton()
             }
               }
@@ -125,7 +126,7 @@ export const EventCard = ({ event, deleteEvent, isLoading }) => {
         ) : (
           <EventWeather
             toggleWeatherButton={toggleWeatherButton}
-            forecast={forecast}
+            zipcode={event.zipcode}
             eventDate= {event.eventDate}
           />
         )}

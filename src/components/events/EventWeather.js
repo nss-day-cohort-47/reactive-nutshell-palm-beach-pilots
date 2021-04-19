@@ -1,25 +1,41 @@
 import React, {useState, useEffect} from "react";
 import "./EventWeather.css";
+import { getWeatherForecast } from "../../modules/WeatherManager.js";
 
 
-export const EventWeather =({toggleWeatherButton, forecast, eventDate} ) => {
+export const EventWeather =({toggleWeatherButton, zipcode, eventDate} ) => {
    const [weatherForEvent, setWeatherForEvent] = useState([])
+//    const [forecast, setForecast] = useState([]);
+const [showForecast, setShowForecast] = useState(false)
 
-    const getEventForecast = () => {
-
-     setWeatherForEvent(forecast.find(day => day.datetime === eventDate))
+    const getEventForecast = (forecast) => {
+        const x = forecast.filter((day) => day.datetime === eventDate);
+     setWeatherForEvent(forecast.filter(day => day.datetime === eventDate))
     }
     
     const handleClose =() => {
+        setShowForecast(false)
         toggleWeatherButton()
     }
-    
+    const getEventWeather = (zipcode) => {
+      getWeatherForecast(zipcode)
+        .then((response) => {
+          return response;
+        })
+        .then((res) => {
+        //   setForecast(...res.data)
+          getEventForecast(res.data)
+
+          return res;
+        })
+        .then(() => setShowForecast(true));
+    };
     
     useEffect(() => {
-        getEventForecast();
+        getEventWeather(zipcode);
     }, []);
 
-    if (weatherForEvent === []) {
+    if (weatherForEvent.length > 0) {
     return  (
       <div className="eventWeather">
         <div className="eventWeather-inner">
