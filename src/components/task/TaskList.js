@@ -11,7 +11,8 @@ export const TaskList = () => {
 
     const getTasks = (currentUser) => {
         return getTasksByUser(currentUser).then(tasksFromAPI => {
-                setTasks(tasksFromAPI)
+                let filteredTasks = tasksFromAPI.filter(task => task.completed === false)
+                setTasks(filteredTasks)
             });
     };
 
@@ -28,7 +29,7 @@ export const TaskList = () => {
                 } else {
                     retrievedTask.completed = true;
                 }
-                updateTask(retrievedTask);
+                updateTask(retrievedTask).then(() => getTasks(currentUser))
             }))
     };
 
@@ -39,11 +40,14 @@ export const TaskList = () => {
     return (
         <>
             <div className="container-cards">
-                {tasks.map(task => <TaskCard
+                {
+                tasks.map(task =>
+                <TaskCard
                     key={task.id}
                     task={task}
                     clickCheckBox={clickCheckBox}
-                    deleteAndSetTasks={deleteAndSetTasks} />)}
+                    deleteAndSetTasks={deleteAndSetTasks} />)
+                }
             </div>
             <section className="section-content">
                 <button type="button" onClick={() => history.push("/tasks/add")}>Add Task</button>
