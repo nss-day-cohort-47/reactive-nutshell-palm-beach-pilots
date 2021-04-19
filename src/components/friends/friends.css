@@ -62,7 +62,7 @@
   background-color: cornsilk;
   border-color: #9b8d11;
 }
-.friend_section{
+.friend_section, .event_section{
     display: flex;
     justify-content: space-evenly;
 }

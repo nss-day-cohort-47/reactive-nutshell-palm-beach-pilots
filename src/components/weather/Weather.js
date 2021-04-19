@@ -26,6 +26,8 @@ export const Weather = () => {
     return () => {};
   }, []);
 
+console.log(weather)
+
   if (weather) {
     return (
       <div className="weather">
@@ -37,9 +39,7 @@ export const Weather = () => {
           <p>{weather.wind?.speed} mph</p>
         </div>
 
-        <p>
-          {weather.coord?.lat} {weather.coord?.lon}
-        </p>
+        
       </div>
     );
   }
