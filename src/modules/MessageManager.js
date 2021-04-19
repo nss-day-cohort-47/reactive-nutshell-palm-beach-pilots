@@ -24,9 +24,9 @@ export const getMessageByUser = (userId) => {
         .then(res => res.json())
 }
 
-// All Public Messages //! Will Refactor To Only Show Friends Messages?
+// All Public Messages
 export const getMessageByPublic = () => {
-    return fetch(`${remoteURL}/messages/?recepientId=0&_expand=user`)
+    return fetch(`${remoteURL}/messages/?recepientId=999&_expand=user`)
         .then(res => res.json())
 }
 

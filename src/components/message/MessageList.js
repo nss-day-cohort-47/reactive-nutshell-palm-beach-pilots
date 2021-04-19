@@ -10,11 +10,6 @@ import { MessageForm } from './MessageForm';
 export const MessageList = () => {
     const currentUser = parseInt(sessionStorage.getItem("nutshell_user"));
     const [messages, setMessages] = useState([]);
-    const history = useHistory();
-
-    //!=========================================================================================
-    //!=====================================REFACTOR BELOW?=====================================
-    //!=========================================================================================
 
     const [userMessages, setUserMessages] = useState([]);
     const [publicMessages, setPublicMessages] = useState([]);
@@ -42,46 +37,43 @@ export const MessageList = () => {
     }
 
     const getAndSetMessages = () => {
-    return getMessageByUser(currentUser).then(
-        function (response) {
-            setUserMessages(response)
-            return response;
-        }).then((data) => {
-            return getMessageByPublic()
-        }).then((data) => {
-            setPublicMessages(data)
-            return getMessagesByRecieved(currentUser)
-                .then((data) => {
-                    setReceivedMessages(data)
-                })
-        })
+        return getMessageByUser(currentUser).then(
+            function (response) {
+                setUserMessages(response)
+                return response;
+            }).then((data) => {
+                return getMessageByPublic()
+            }).then((data) => {
+                setPublicMessages(data)
+                return getMessagesByRecieved(currentUser)
+                    .then((data) => {
+                        setReceivedMessages(data)
+                    })
+            })
     }
 
-useEffect(() => {
-    getAndSetMessages();
-}, [messages]);
+    useEffect(() => {
+        getAndSetMessages();
+    }, [messages]);
 
-useEffect(() => {
-    combineFilterAndParseArrays();
-}, [receivedMessages])
+    useEffect(() => {
+        combineFilterAndParseArrays();
+    }, [receivedMessages])
 
-//!=========================================================================================
-//!=====================================REFACTOR ABOVE?=====================================
-//!=========================================================================================
+    const deleteAndSetMessages = (messageId) => {
+        deleteMessage(messageId)
+            .then(getAndSetMessages)
+    }
 
-const deleteAndSetMessages = (messageId) => {
-    deleteMessage(messageId)
-        .then(getAndSetMessages)
-}
-
-return (
-    <>
-        <div>{messages.map(message => <MessageCard
-            key={message.id}
-            message={message}
-            deleteAndSetMessages={deleteAndSetMessages} />)}
-        </div>
-        <MessageForm/>
-    </>
-)
+    return (
+        <>
+            <div>{messages.map(message => <MessageCard
+                key={message.id}
+                message={message}
+                deleteAndSetMessages={deleteAndSetMessages} />)}
+            </div>
+            <MessageForm
+                getAndSetMessages={getAndSetMessages} />
+        </>
+    )
 }
