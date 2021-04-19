@@ -13,6 +13,7 @@ import { TaskList } from "./task/TaskList"
 import { TaskEditForm } from "./task/TaskEdit"
 import { TaskForm } from "./task/TaskForm"
 
+
 export const ApplicationViews = () => {
   return (
     <>
@@ -63,7 +64,7 @@ export const ApplicationViews = () => {
 
       <Route path="/events/create">{<EventForm />}</Route>
       <Route path="/events/:eventId(\d+)/edit">{<EditEvent />}</Route>
-      <Route path="/events/:eventId(\d+)/weather"></Route>
+      {/* <Route path="/events/:eventId(\d+)/weather"><EventWeather /></Route> */}
     </>
   );
 }
