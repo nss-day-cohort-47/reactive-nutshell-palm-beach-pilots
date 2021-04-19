@@ -5,7 +5,7 @@ import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import "./Nutshell.css"
-import{ EventWeather } from "./events/EventWeather.js";
+
 
 
 export const Nutshell = () => (
@@ -18,7 +18,7 @@ export const Nutshell = () => (
             <>
               <NavBar />
               <ApplicationViews />
-              <EventWeather trigger={false}/>
+            
             </>
           )
         } else {

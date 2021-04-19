@@ -6,13 +6,13 @@ import { EventCard } from "./EventCard.js";
 import { getAllEvents, removeEvent } from "../../modules/EventManager.js";
 import { useHistory } from "react-router";
 import { getFriends } from "../../modules/FriendsManager.js";
-import {  getWeatherForecast } from "../../modules/WeatherManager.js";
+// import {  getWeatherForecast } from "../../modules/WeatherManager.js";
 // import { EventWeather} from "./EventWeather"
 
 export const EventList = () => {
   const [allEvents, setAllEvents] = useState([]);
   // const [zipweather, setZipweather] = useState([]);
-  const [forecast, setForecast] = useState([]);
+  // const [forecast, setForecast] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [friends, setFriends] = useState([]);
 
@@ -49,16 +49,16 @@ export const EventList = () => {
   };
 
   
-  const getEventWeather = (zipcode) => {
-    getWeatherForecast(zipcode)
-    .then((response) => {
-      // console.log("zip",response)
-      return response})
-      .then((res) => {
-        setForecast(res)
-        return res
-      })
-    }
+  // const getEventWeather = (zipcode) => {
+  //   getWeatherForecast(zipcode)
+  //   .then((response) => {
+  //     // console.log("zip",response)
+  //     return response})
+  //     .then((res) => {
+  //       setForecast(res)
+  //       return res
+  //     })
+  //   }
     
     const deleteEvent = (id) => {
       removeEvent(id)
@@ -123,7 +123,7 @@ export const EventList = () => {
               key={event.id}
               deleteEvent={deleteEvent}
               isLoading={isLoading}
-              getEventWeather={getEventWeather}
+              // getEventWeather={getEventWeather}
             />
           ))}
       </div>
