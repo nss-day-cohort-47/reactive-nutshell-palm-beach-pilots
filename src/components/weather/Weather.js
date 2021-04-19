@@ -1,33 +1,32 @@
-import React, {useState, useEffect} from 'react'
+//     *****     Chad[well] Clark 2021     *****     //
 
-import {  getWeatherZip } from '../../modules/WeatherManager'
+//   ***  Component for displaying current weather for current user's locality
+//   ***   Defaulting to Nashville, TN
 
+import React, { useState, useEffect } from "react";
 
-export const Weather = (zip) => {
-  
-    // const[zipcode, setZipcode] = useState()
-    const [weather, setWeather] = useState({"weather": [{}]})
-   
-    // if (zip) {
-    //   setZipcode(zip)
-    // } else {
-    //   setZipcode(37204)
-    // }
+import { getWeatherZip } from "../../modules/WeatherManager";
 
-    useEffect(() => {
-      
-        getWeatherZip(37204)
-        .then((weather) => {
-            
-            console.log(weather)
-            setWeather(weather)
-        })
-           
-        return () => {           
-        }
-    }, [])
+export const Weather = () => {
+  // const[zipcode, setZipcode] = useState()
+  const [weather, setWeather] = useState({ weather: [{}] });
 
-    if (weather) {
+  // if (zip) {
+  //   setZipcode(zip)
+  // } else {
+  //   setZipcode(37204)
+  // }
+
+  useEffect(() => {
+    getWeatherZip(37204).then((weather) => {
+      console.log(weather);
+      setWeather(weather);
+    });
+
+    return () => {};
+  }, []);
+
+  if (weather) {
     return (
       <div className="weather">
         <div>
@@ -38,14 +37,10 @@ export const Weather = (zip) => {
           <p>{weather.wind?.speed} mph</p>
         </div>
 
-        <p>{weather.coord?.lat}  {weather.coord?.lon}</p>
+        <p>
+          {weather.coord?.lat} {weather.coord?.lon}
+        </p>
       </div>
     );
-    
+  }
 };
-}
-
-
-
-
-
