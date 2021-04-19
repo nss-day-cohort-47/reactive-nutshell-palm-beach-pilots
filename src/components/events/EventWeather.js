@@ -36,22 +36,26 @@ const [showForecast, setShowForecast] = useState(false)
     }, []);
 
     if (weatherForEvent.length > 0) {
-    return  (
+        console.log(weatherForEvent[0].rh)
+    return (
       <div className="eventWeather">
         <div className="eventWeather-inner">
           <h3>Event Weather Forecast</h3>
-          {/* <p>{forecast.data[15].weather.description.toUpperCase()} Chance of Precipitation {forecast.data[15].pop}%</p> */}
-        
-          <button
-            className="close-btn"
-            onClick={handleClose}
-          >
+          <p>
+            {weatherForEvent[0].weather.description.toUpperCase()} Chance of
+            Precipitation {weatherForEvent[0].pop}%
+          </p>
+          <p>HI {weatherForEvent[0].max_temp}°F</p>
+          <p>LO {weatherForEvent[0].min_temp}°F</p>
+          <p>
+            Winds {weatherForEvent[0].wind_cdir_full.toUpperCase()} at {weatherForEvent[0].wind_spd} miles per hour
+          </p>
+          <button className="close-btn" onClick={handleClose}>
             Close
           </button>
-          
         </div>
       </div>
-    )
+    );
     } else {
        return  (
       <div className="eventWeather">
