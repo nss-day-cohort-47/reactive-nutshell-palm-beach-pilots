@@ -4,13 +4,13 @@ import { parseDate } from "../helper/helperFunctions";
 
 export const TaskCard = ({ task, clickCheckBox, deleteAndSetTasks }) => {
     let dateRegex = (/.+?:/);
-    let formattedDate = parseDate(task.completionDate).toString().match(dateRegex)[0].slice(0, -4)
+    let completedDate = parseDate(task.completionDate).toString().match(dateRegex)[0].slice(0, -4)
 
     return (
         <>
             <section className="task">
                 <h5 className="task__name">{task.name}</h5>
-                <small className="task__date">Due: {formattedDate}</small>
+                <small className="task__date">Due: {completedDate}</small>
                 <input type="checkbox" onClick={() => clickCheckBox(task.id)}></input>
                 <br></br>
                 <Link to={`/tasks/${task.id}/edit`}>

@@ -17,8 +17,13 @@ export const TaskList = () => {
 
     const deleteAndSetTasks = (id) => {
         deleteTask(id)
-            .then(() => getTasks().then(setTasks))
+            .then(getTasks)
     };
+
+    // const deleteAndSetTasks = (id) => {
+    //     deleteTask(id)
+    //         .then(() => getTasks().then(setTasks))
+    // };
 
     const clickCheckBox = (id) => {
         getTaskById(id)
@@ -33,8 +38,8 @@ export const TaskList = () => {
     };
 
     useEffect(() => {
-        getTasks(currentUser);
-    }, [])
+        getTasks(currentUser)
+    }, [tasks])
 
     return (
         <>

@@ -4,11 +4,13 @@ import { addTask } from "../../modules/TaskManager";
 import { getCurrentUser } from "../helper/helperFunctions"
 
 export const TaskForm = () => {
+    let today = new Date().toISOString().substr(0, 10);
+
     const [task, setTask] = useState({
         name: "",
         userId: getCurrentUser(),
         dateCreated: Date.now(),
-        completionDate: "",
+        completionDate: today,
         completed: false
     })
 
