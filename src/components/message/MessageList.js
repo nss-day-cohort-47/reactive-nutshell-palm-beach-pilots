@@ -10,11 +10,6 @@ import { MessageForm } from './MessageForm';
 export const MessageList = () => {
     const currentUser = parseInt(sessionStorage.getItem("nutshell_user"));
     const [messages, setMessages] = useState([]);
-    const history = useHistory();
-
-    //!=========================================================================================
-    //!=====================================REFACTOR BELOW?=====================================
-    //!=========================================================================================
 
     const [userMessages, setUserMessages] = useState([]);
     const [publicMessages, setPublicMessages] = useState([]);
@@ -59,15 +54,11 @@ export const MessageList = () => {
 
 useEffect(() => {
     getAndSetMessages();
-}, [messages]);
+}, []);
 
 useEffect(() => {
     combineFilterAndParseArrays();
 }, [receivedMessages])
-
-//!=========================================================================================
-//!=====================================REFACTOR ABOVE?=====================================
-//!=========================================================================================
 
 const deleteAndSetMessages = (messageId) => {
     deleteMessage(messageId)
