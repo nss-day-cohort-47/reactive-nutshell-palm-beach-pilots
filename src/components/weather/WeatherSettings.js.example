@@ -1,3 +1,13 @@
+//     *****     Chad[well] Clark 2021     *****     //
+
+//   ***   Component for storing API keys with out exposing them to general public
+//   ***   Copy this file and remove the .example extension
+//   ***   Copy your API Keys in to quotes below
+//   ***   WeatherSettings.js is included in gitignore so you API keys will not be exposed
+//   ***   You will need API keys for both openweather and weatherbit.io. 
+//   ***   Both are free unless you want to make many calls an hour
+
 export const settings = {
-  weatherKey: "(Your openweather API key goes inbetween quotes)",
+  weatherKey: "(Your openweather API key goes in between the quotes)",
+  weatherKey2: "(Your weatherbit.io API key goes in between the quotes)",
 };

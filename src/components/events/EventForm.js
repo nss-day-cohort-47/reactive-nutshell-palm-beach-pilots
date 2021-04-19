@@ -37,16 +37,18 @@ const cancelAdd = (e) => {
 const handleSaveEvent = (e) => {
     e.preventDefault()
     event.timestamp = Date.now()
-    if(event.name === "" ||
+    if (
+      event.name === "" ||
       event.eventDate === "" ||
+      event.eventTime === "" ||
       event.address === "" ||
-      event.city === "" || 
-      event.state === "" || 
-      event.zipcode === "" ) {
-      window.alert("Please fill out all event information")
+      event.city === "" ||
+      event.state === "" ||
+      event.zipcode === ""
+    ) {
+      window.alert("Please fill out all event information");
     } else {
-      addEvent(event)
-      .then(() => history.push("/events"));
+      addEvent(event).then(() => history.push("/events"));
     }
 
 }
@@ -162,7 +164,7 @@ const handleSaveEvent = (e) => {
         value={event.timestamp = Date.now()}
       /> */}
       <button className="btn btn-primary" onClick={handleSaveEvent}>
-        Save New Event
+        Save Event
       </button>
       <button type="button" className="btn btn-primary" onClick={cancelAdd}>
         Cancel

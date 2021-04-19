@@ -1,36 +1,37 @@
-const remoteURL = "http://localhost:8088";
+//     *****     Chad[well] Clark 2021     *****     //
 
+//   ***   Data manager component for handling Events
+//   ***   Full CRUD functionality to database.json
+
+const remoteURL = "http://localhost:8088";
 
 export const getAllEvents = (id) => {
   if (id) {
     // return fetch(`${remoteURL}/events?userId=${id}&_expand=user`)
     // .then(response => response.json())
   } else {
-    return fetch(`${remoteURL}/events`)
-    .then(response => response.json())
-}}
+    return fetch(`${remoteURL}/events`).then((response) => response.json());
+  }
+};
 
 export const getEventById = (id) => {
-  return fetch(`${remoteURL}/events/${id}`)
-  .then((response) => response.json());
+  return fetch(`${remoteURL}/events/${id}`).then((response) => response.json());
 };
 
 export const removeEvent = (id) => {
   return fetch(`${remoteURL}/events/${id}`, {
-      method: "DELETE"
-  })
-  .then((response) => response.json());
+    method: "DELETE",
+  }).then((response) => response.json());
 };
 
 export const addEvent = (newEvent) => {
   return fetch(`${remoteURL}/events`, {
     method: "POST",
     headers: {
-        "Content-Type": "application/json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(newEvent),
-  })
-  .then((response) => response.json());
+  }).then((response) => response.json());
 };
 
 export const editEvent = (editedEvent) => {
