@@ -45,11 +45,11 @@ export const EventWeather = ({ toggleWeatherButton, zipcode, eventDate }) => {
             {weatherForEvent[0].weather.description.toUpperCase()} Chance of
             Precipitation {weatherForEvent[0].pop}%
           </p>
-          <p>HI {weatherForEvent[0].max_temp}°F</p>
-          <p>LO {weatherForEvent[0].min_temp}°F</p>
+          <p>HI {Math.round(+(weatherForEvent[0].max_temp))}°F</p>
+          <p>LO {Math.round(+(weatherForEvent[0].min_temp))}°F</p>
           <p>
             Winds {weatherForEvent[0].wind_cdir_full.toUpperCase()} at{" "}
-            {weatherForEvent[0].wind_spd} miles per hour
+            {Math.round(+(weatherForEvent[0].wind_spd))} miles per hour
           </p>
           <button className="close-btn" onClick={handleClose}>
             Close
