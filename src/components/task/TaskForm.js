@@ -31,31 +31,33 @@ export const TaskForm = () => {
 
     const handleClickSaveAnimal = (event) => {
         event.preventDefault() //Prevents the browser from submitting the form
-            addTask(task)
-                .then(() => history.push("/tasks"))
+        addTask(task)
+            .then(() => history.push("/tasks"))
 
     }
 
     return (
         <>
             <form className="taskForm">
-                <input  type="text"
-                        id="name"
-                        required
-                        value={task.name}
-                        placeholder="Task..."
-                        onChange={handleControlledInputChange}></input>
-                <input  type="date"
-                        id="completionDate"
-                        required
-                        value={task.completionDate}
-                        onChange={handleControlledInputChange}></input>
-                <button onClick={handleClickSaveAnimal}
+                <input type="text"
+                    id="name"
+                    required
+                    value={task.name}
+                    placeholder="Task..."
+                    onChange={handleControlledInputChange}></input>
+                <input type="date"
+                    id="completionDate"
+                    required
+                    value={task.completionDate}
+                    onChange={handleControlledInputChange}></input>
+                <section className="buttonBin">
+                    <button onClick={handleClickSaveAnimal}
                         className="friendBtn"
-                        >Add</button>
-                <button onClick={() => history.push("/tasks")}
+                    >Add</button>
+                    <button onClick={() => history.push("/tasks")}
                         className="btn_Cancel"
-                        >Cancel</button>
+                    >Cancel</button>
+                </section>
             </form>
         </>
     )

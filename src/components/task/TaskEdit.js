@@ -24,7 +24,7 @@ export const TaskEditForm = () => {
             userId: task.userId,
             name: task.name,
             dateCreated: task.dateCreated,
-            completed : false,
+            completed: false,
             completionDate: task.completionDate
         }
 
@@ -66,6 +66,7 @@ export const TaskEditForm = () => {
                         />
                     </div>
                 </fieldset>
+                <section className="buttonBin">
                     <div className="">
                         <button
                             type="button" disabled={isLoading}
@@ -80,6 +81,7 @@ export const TaskEditForm = () => {
                             className="btn_Cancel"
                         >Cancel</button>
                     </div>
+                </section>
             </form>
         </>
     );

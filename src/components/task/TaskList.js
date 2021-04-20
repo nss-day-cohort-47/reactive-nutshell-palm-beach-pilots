@@ -39,7 +39,7 @@ export const TaskList = () => {
 
     return (
         <>
-            <div className="container-cards">
+            <div className="taskCards">
                 {
                 tasks.map(task =>
                 <TaskCard
