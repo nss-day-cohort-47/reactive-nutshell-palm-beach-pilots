@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import {compareValues} from '../helper/helperFunctions';
-import "../friends/friends.css";
+import "../../components/Nutshell.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getArticles, deleteArticle,AddNewArticle,updateArticle } from "../../modules/ArticlesManager";
 import { ArticleCard } from './ArticleCard'

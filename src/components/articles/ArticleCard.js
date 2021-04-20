@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import "../friends/friends.css";
+import "../../components/Nutshell.css";
 export const ArticleCard = ({ article, handleDel, handleEdit }) => {
     const [test, setTest] = useState(true);
     return (

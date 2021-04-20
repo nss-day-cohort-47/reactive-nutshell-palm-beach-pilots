@@ -54,7 +54,7 @@ export const EditEvent = () => {
     
     return (
       <>
-        <div>
+        <div className="card form">
           <form>
             <div>
             <fieldset>
@@ -154,21 +154,23 @@ export const EditEvent = () => {
               </div>
             </fieldset>
             </div>
+            <div className="btn_group2">
             <button
               type="button"
               disabled={isLoading}
-              className="btn btn-primary"
+              className=" btnMargin friendBtn"
               onClick={updateEvent}
             >
               Update Event
             </button>
             <button
               type="button"
-              className="btn btn-primary"
+              className=" btnMargin btn_Cancel"
               onClick={cancelEdit}
             >
               Cancel Edit
             </button>
+            </div>
           </form>
         </div>
       </>

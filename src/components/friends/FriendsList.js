@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import "./friends.css";
+import "../../components/Nutshell.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getUsers, getFriends, addFriend, deleteFriend } from "../../modules/FriendsManager";
 import { Hint } from "react-autocomplete-hint";

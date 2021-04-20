@@ -36,28 +36,30 @@ export const EventCard = ({ event, deleteEvent, isLoading }) => {
   }
   if (currUser !== event.userId) {
     return (
-      <div className="eventList">
-        <div className="eventCard">
+      <div className="card">
+        <div>
           <i>
-            <h3>
-              Event: <span> {event.name}</span>
-            </h3>
-            <p>
-              <strong>Event Date:</strong> {event.eventDate}
-            </p>
-            <p>
-              <strong>Event Time:</strong> {event.eventTime}
-            </p>
-            <h5>Event Location: </h5>
-            <p>{event.address}</p>
-            <p>
-              {event.city}, {event.state} {event.zipcode}
-            </p>
+            <div className="event">
+              <h3>
+                Event: <span> {event.name}</span>
+              </h3>
+              <p>
+                <strong>Event Date:</strong> {event.eventDate}
+              </p>
+              <p>
+                <strong>Event Time:</strong> {event.eventTime}
+              </p>
+              <h5>Event Location: </h5>
+              <p>{event.address}</p>
+              <p>
+                {event.city}, {event.state} {event.zipcode}
+              </p>
+            </div>
             {eventWeatherButton !== true ? (
-              <div>
+              <div className="btn_group">
                 <button
                   type="button"
-                  className="btn btn-secondary"
+                  className="btn_otherColor"
                   onClick={() => {
                     // getEventWeather(event.zipcode);
                     toggleWeatherButton();
@@ -81,42 +83,45 @@ export const EventCard = ({ event, deleteEvent, isLoading }) => {
 
   } else {
   return (
-    <div className="eventList">
-      <div className="eventCard">
-        <h3>
-          Event: <span> {event.name}</span>
-        </h3>
-        <p>
-          <strong>Event Date:</strong> {event.eventDate}
-        </p>
-        <p>
-          <strong>Event Time:</strong> {event.eventTime}
-        </p>
-        <h5>Event Location: </h5>
-        <p>{event.address}</p>
-        <p>
-          {event.city}, {event.state} {event.zipcode}
-        </p>
+    <div>
+      <div className="card">
+        <div className="event">
+          <h3>
+            Event: <span> {event.name}</span>
+          </h3>
+          <p>
+            <strong>Event Date:</strong> {event.eventDate}
+          </p>
+          <p>
+            <strong>Event Time:</strong> {event.eventTime}
+          </p>
+          <h5>Event Location: </h5>
+          <p>{event.address}</p>
+          <p>
+            {event.city}, {event.state} {event.zipcode}
+          </p>
+        </div>
         {eventWeatherButton !== true ? (
-          <div>
+          <div className="btn_group">
             <Link to={`events/${event.id}/edit`}>
-              <button className="btn btn-primary">Edit</button>
+              <button className="friendBtn">Edit</button>
             </Link>
             <button
+            
               type="button"
-              className="btn btn-secondary"
+              className=" btn_otherColor"
               onClick={() => {
                 // getEventWeather(event.zipcode)
-              toggleWeatherButton()
-            }
-              }
+                toggleWeatherButton();
+              }}
             >
               Show Weather
+              
             </button>
 
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn_Cancel"
               disabled={isLoading}
               onClick={() => deleteEvent(event.id)}
             >
@@ -127,7 +132,7 @@ export const EventCard = ({ event, deleteEvent, isLoading }) => {
           <EventWeather
             toggleWeatherButton={toggleWeatherButton}
             zipcode={event.zipcode}
-            eventDate= {event.eventDate}
+            eventDate={event.eventDate}
           />
         )}
       </div>

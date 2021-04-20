@@ -3,8 +3,9 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   border-radius: 5px; /* 5px rounded corners */;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   flex: 0 1 24%;
+  overflow: hidden;
 }
 
 .friends {
@@ -62,7 +63,7 @@
   background-color: cornsilk;
   border-color: #9b8d11;
 }
-.friend_section{
+.friend_section {
     display: flex;
     justify-content: space-evenly;
 }
@@ -113,5 +114,47 @@
 }
 
 .btn_Cancel{
+  background-color: rgb(245, 89, 89);
+}
+
+.weather{
+  display: flex;
+  /* justify-content: center; */
+  text-align: center;
+  margin: .2rem;
+}
+
+.btn_group {
+  display:flex;
+  justify-content: space-evenly;
+}
+.btn_group2 {
+  display:flex;
+  justify-content:inherit;
+}
+
+.event-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.form {
+  padding-left: 35%;
+}
+.btnMargin {
+  margin:.3rem;
+}
+.event {
+  padding-left: 30%;
   background-color: mediumvioletred;
+}
+.Sidebar{
+  margin-left: 1rem;
+}
+
+.messaageText{
+  width: 20rem;
+  height: 10rem;
+  text-align: left;
+  overflow-wrap: break-word;
 }
