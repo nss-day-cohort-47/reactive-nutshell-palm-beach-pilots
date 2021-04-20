@@ -62,7 +62,7 @@ useEffect(() => {
 
 return (
     <div onClick={goto}>
-    <h4>My Friends</h4>
+    <h4>Messages</h4>
     <hr></hr>
     {messages.map(message => {
          return <div className="card" key={message.id}>
