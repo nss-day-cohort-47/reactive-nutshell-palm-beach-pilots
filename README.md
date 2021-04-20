@@ -1,4 +1,51 @@
-# Reactive Nutshell: The Information Dashboard
+# Reactive Nutshell: The Palm Beach Pilots
+
+The Palm Beach Pilots are [Chris Douglas](https://github.com/cdouglass516), [Colten Mayberry](https://github.com/coltmay) and [Chad Clark](https://github.com/Chadwell-Clark) from Cohort 47 of the Nashville Software School Full Stack Fulltime Web Development program.
+***
+Reactive Nutshell is an application that can be used to organize a person's daily tasks, upcoming events, news articles, and friends they can choose to chat with.  
+***
+It is built on:
+* [JSON Server](https://www.npmjs.com/package/json-server)
+* [React](https://reactjs.org/)
+	* [react-router-dom](https://www.npmjs.com/package/react-router-dom)
+	* [react-autocomplete-hint](https://www.npmjs.com/package/react-autocomplete-hint)
+	* [styled-css-grid](https://www.npmjs.com/package/styled-css-grid)
+	* [bootstrap.min.css](https://getbootstrap.com/)
+***
+## How To Deploy
+In the root folder of project, run:
+```shell
+npm install
+npm install json-server
+```
+
+In the `api` directory, create a copy of the `database.json.example` and remove the .example extension.
+Then run:
+```shell
+json-server -p 8088 -w database.json
+```
+To start the project:
+```shell
+npm start
+```
+***
+## The Weather APIs
+Reactive Nutshell uses two different weather APIs:
+* [OpenWeatherMap](https://openweathermap.org/)
+* [Weatherbit](https://www.weatherbit.io/)
+
+Both of which require keys and both of which are free to use in the capacity they are being used in this application.
+
+Once you have keys for both APIs you can copy `WeatherSettings.js.example` and remove the `.example` extension.
+
+Inside WeatherSettings.js you can include your api keys into the quotes of `weatherKey` (OpenWeather) and `weatherKey2` (Weatherbit.io).
+
+>`WeatherSettings.js` is included in the `.gitignore` so you do not have to worry about exposing your API keys.
+***
+
+# Setup Instructions for Students
+
+## Reactive Nutshell: The Information Dashboard
 
 ## Setup: Follow these steps exactly
 
