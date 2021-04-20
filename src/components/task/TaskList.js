@@ -39,7 +39,7 @@ export const TaskList = () => {
 
     return (
         <>
-            <div className="container-cards">
+            <div className="taskCards">
                 {
                 tasks.map(task =>
                 <TaskCard
@@ -49,8 +49,8 @@ export const TaskList = () => {
                     deleteAndSetTasks={deleteAndSetTasks} />)
                 }
             </div>
-            <section className="section-content">
-                <button type="button" onClick={() => history.push("/tasks/add")}>Add Task</button>
+            <section className="taskButtonContent">
+                <button type="button" className="friendBtn" onClick={() => history.push("/tasks/add")}>Add Task</button>
             </section>
         </>
     );

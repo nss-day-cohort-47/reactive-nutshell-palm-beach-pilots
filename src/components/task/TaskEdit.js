@@ -24,7 +24,7 @@ export const TaskEditForm = () => {
             userId: task.userId,
             name: task.name,
             dateCreated: task.dateCreated,
-            completed : false,
+            completed: false,
             completionDate: task.completionDate
         }
 
@@ -66,20 +66,22 @@ export const TaskEditForm = () => {
                         />
                     </div>
                 </fieldset>
+                <section className="buttonBin">
                     <div className="">
                         <button
                             type="button" disabled={isLoading}
                             onClick={updateExistingTask}
-                            className="btn btn-primary"
+                            className="friendBtn"
                         >Update</button>
                     </div>
                     <div className="">
                         <button
                             type="button" disabled={isLoading}
-                            onClick={null}
-                            className="btn btn-primary"
+                            onClick={() => history.push("/tasks")}
+                            className="btn_Cancel"
                         >Cancel</button>
                     </div>
+                </section>
             </form>
         </>
     );

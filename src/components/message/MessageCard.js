@@ -13,9 +13,9 @@ export const MessageCard = ({ message, deleteAndSetMessages }) => {
             {message.userId === currentUser ?
                 <>
                     <Link to={`/messages/${message.id}/edit`}>
-                        <button type="button">Edit</button>
+                        <button className="friendBtn" type="button">Edit</button>
                     </Link>
-                    <button type="button" onClick={() => deleteAndSetMessages(message.id)}>Delete</button>
+                    <button type="button" className="btn_Cancel" onClick={() => deleteAndSetMessages(message.id)}>Delete</button>
                 </>
                 : null
             }

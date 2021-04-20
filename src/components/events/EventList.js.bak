@@ -33,7 +33,7 @@ export const EventList = () => {
     getUsersFriends()
     return getAllEvents()
     .then((eventsFromAPI) => {
-      console.log(eventsFromAPI)
+      //console.log(eventsFromAPI)
      return setAllEvents(eventsFromAPI);
     })
     // .then(() => {

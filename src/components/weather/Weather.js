@@ -19,14 +19,14 @@ export const Weather = () => {
 
   useEffect(() => {
     getWeatherZip(37204).then((weather) => {
-      console.log(weather);
+      //console.log(weather);
       setWeather(weather);
     });
 
     return () => {};
   }, []);
 
-console.log(weather)
+//console.log(weather)
 
   if (weather) {
     return (
