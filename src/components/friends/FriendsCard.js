@@ -1,5 +1,5 @@
 import React from "react";
-import "./friends.css";
+import "../../components/Nutshell.css";
 export const FriendsCard = ({ friend, handleDel }) => {
   return (
       <div  className="friendslist" ><span className="friendName">{friend.user.name}</span> <a href="#" id={friend.id} className="friendBtn" onClick={() => handleDel(friend.id)} > remove friend</a></div> 

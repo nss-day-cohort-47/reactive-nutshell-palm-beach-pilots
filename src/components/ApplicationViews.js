@@ -18,7 +18,6 @@ export const ApplicationViews = () => {
   return (
     <>
       <Route exact path="/">
-        <Weather zip="37067"/>
         <ArticlesList />
         {/* Render the component for news articles */}
       </Route>
