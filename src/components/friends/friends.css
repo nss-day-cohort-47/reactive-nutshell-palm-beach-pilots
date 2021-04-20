@@ -63,7 +63,7 @@
   background-color: cornsilk;
   border-color: #9b8d11;
 }
-.friend_section{
+.friend_section {
     display: flex;
     justify-content: space-evenly;
 }
@@ -114,6 +114,38 @@
 }
 
 .btn_Cancel{
+  background-color: rgb(245, 89, 89);
+}
+
+.weather{
+  display: flex;
+  /* justify-content: center; */
+  text-align: center;
+  margin: .2rem;
+}
+
+.btn_group {
+  display:flex;
+  justify-content: space-evenly;
+}
+.btn_group2 {
+  display:flex;
+  justify-content:inherit;
+}
+
+.event-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.form {
+  padding-left: 35%;
+}
+.btnMargin {
+  margin:.3rem;
+}
+.event {
+  padding-left: 30%;
   background-color: mediumvioletred;
 }
 .Sidebar{

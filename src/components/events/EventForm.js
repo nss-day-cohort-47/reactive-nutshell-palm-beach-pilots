@@ -54,7 +54,7 @@ const handleSaveEvent = (e) => {
 }
 
   return (
-    <form>
+    <form className="card form">
       <fieldset>
         <div>
           <h4> Event Name</h4>
@@ -163,12 +163,14 @@ const handleSaveEvent = (e) => {
         className="event-form"
         value={event.timestamp = Date.now()}
       /> */}
-      <button className="btn btn-primary" onClick={handleSaveEvent}>
+      <div className="btn_group2">
+      <button className="friendBtn" onClick={handleSaveEvent}>
         Save Event
       </button>
-      <button type="button" className="btn btn-primary" onClick={cancelAdd}>
+      <button type="button" className="btn_Cancel" onClick={cancelAdd}>
         Cancel
       </button>
+      </div>
     </form>
   );
 };

@@ -6,13 +6,10 @@ import { EventCard } from "./EventCard.js";
 import { getAllEvents, removeEvent } from "../../modules/EventManager.js";
 import { useHistory } from "react-router";
 import { getFriends } from "../../modules/FriendsManager.js";
-// import {  getWeatherForecast } from "../../modules/WeatherManager.js";
-// import { EventWeather} from "./EventWeather"
+
 
 export const EventList = () => {
   const [allEvents, setAllEvents] = useState([]);
-  // const [zipweather, setZipweather] = useState([]);
-  // const [forecast, setForecast] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [friends, setFriends] = useState([]);
 
@@ -48,18 +45,7 @@ export const EventList = () => {
     });
   };
 
-  
-  // const getEventWeather = (zipcode) => {
-  //   getWeatherForecast(zipcode)
-  //   .then((response) => {
-  //     // console.log("zip",response)
-  //     return response})
-  //     .then((res) => {
-  //       setForecast(res)
-  //       return res
-  //     })
-  //   }
-    
+
     const deleteEvent = (id) => {
       removeEvent(id)
       .then(getEvents);
@@ -71,61 +57,40 @@ export const EventList = () => {
       .then(() => setIsLoading(false));
     }, []);
 
-  
-  // console.log(
-  //   forecast
-  //     ? `${forecast.data[15].weather.description.toUpperCase()} Chance of Precipitation ${forecast.data[15].pop}%`
-  //     : ""
-  // );
-  // console.log(
-  //   forecast
-  //     ? `HI ${forecast.data[15].max_temp}°F`
-  //     : ""
-  // );
-  // console.log(
-  //   forecast
-  //     ? `LO ${forecast.data[15].min_temp}°F`
-  //     : ""
-  // );
-  // console.log(
-  //   forecast
-  //     ? `Winds ${forecast.data[15].wind_cdir_full} at ${forecast.data[15].wind_spd} miles per hour`
-  //     : ""
-  // );
-  
-  
-
   return (
     <>
-      <section>
-        <button
-          type="button"
-          className="btn btn-primary"
-          id="addEvent"
-          onClick={() => {
-            history.push("events/create");
-          }}
-        >
-          ADD New event
-        </button>
-      </section>
-      <div>
-        {allEvents
-          .filter(
-            (event) => event.eventDate >= new Date().toISOString().substr(0,10)
-          )
-          .filter(
-            (event) => event.userId === currUser || All.includes(event.userId)
-          )
-          .map((event) => (
-            <EventCard
-              event={event}
-              key={event.id}
-              deleteEvent={deleteEvent}
-              isLoading={isLoading}
-              // getEventWeather={getEventWeather}
-            />
-          ))}
+      <div className="event_section">
+        <section className="card">
+          <button
+            type="button"
+            className="friendBtn addEvent"
+            id="addEvent"
+            onClick={() => {
+              history.push("events/create");
+            }}
+          >
+            ADD New event
+          </button>
+        </section>
+        <div>
+          {allEvents
+            .filter(
+              (event) =>
+                event.eventDate >= new Date().toISOString().substr(0, 10)
+            )
+            .filter(
+              (event) => event.userId === currUser || All.includes(event.userId)
+            )
+            .map((event) => (
+              <EventCard
+                event={event}
+                key={event.id}
+                deleteEvent={deleteEvent}
+                isLoading={isLoading}
+                // getEventWeather={getEventWeather}
+              />
+            ))}
+        </div>
       </div>
     </>
   );
