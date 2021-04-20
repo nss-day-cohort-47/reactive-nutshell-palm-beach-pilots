@@ -8,11 +8,12 @@
 
      display:flex;
      justify-content: center;
-     align-items: center;
+     align-items: flex-start;
  }
 
  .eventWeather-inner {
      position: relative;
+     margin-top: 5%;
      padding:32px;
      width: 100%;
      max-width: 640px;

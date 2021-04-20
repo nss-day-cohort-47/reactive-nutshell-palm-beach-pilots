@@ -36,7 +36,7 @@ export const EventCard = ({ event, deleteEvent, isLoading }) => {
   }
   if (currUser !== event.userId) {
     return (
-      <div className="card">
+      <div className=" zcard card">
         <div>
           <i>
             <div className="event">
@@ -84,7 +84,7 @@ export const EventCard = ({ event, deleteEvent, isLoading }) => {
   } else {
   return (
     <div>
-      <div className="card">
+      <div className=" zcard card">
         <div className="event">
           <h3>
             Event: <span> {event.name}</span>
