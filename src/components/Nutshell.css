@@ -2,3 +2,72 @@
 strong {
   font-weight: bold;
 }
+
+.message {
+  padding-left: 20px;
+}
+
+.messageForm {
+  width: 100%;
+  text-align: center;
+}
+
+.messageForm textarea {
+  width: 100%;
+  height: 120px;
+  resize: none;
+}
+
+#messagetxt {
+  width: 100%;
+  height: 115px;
+  resize: none;
+}
+
+.task {
+  padding-top: 10px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.taskForm {
+  width: 100%;
+  text-align: center;
+}
+
+.task__row__A {
+  width: 100%;
+  display: flex;
+}
+
+.task__name {
+  width: 100%;
+  margin-left: 15px;
+  align-self: center;
+  text-align: center;
+}
+
+.task__checkbox {
+  margin-left: auto;
+  align-self: center;
+  margin-right: 10px;
+}
+
+.taskButtonContent {
+  text-align: center;
+}
+
+.taskCards {
+  width: 100%;
+}
+
+.taskButtonContent {
+  width: 100%;
+}
+
+.buttonBin {
+  flex-direction: row;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+}

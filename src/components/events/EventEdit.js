@@ -41,7 +41,7 @@ export const EditEvent = () => {
       eventTime: event.eventTime,
       timestamp: event.timestamp
     }
-    console.log(editedEvent)
+    //console.log(editedEvent)
     editEvent(editedEvent)
       .then(() => history.push("/events"));
     };

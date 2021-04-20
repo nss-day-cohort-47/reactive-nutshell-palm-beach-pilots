@@ -69,7 +69,7 @@ export const EventList = () => {
               history.push("events/create");
             }}
           >
-            ADD New event
+            New Event
           </button>
         </section>
         <div>
