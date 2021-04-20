@@ -59,35 +59,38 @@ export const EventList = () => {
 
   return (
     <>
-      <section className="event_section">
-        <button
-          type="button"
-          className="btn btn-primary"
-          id="addEvent"
-          onClick={() => {
-            history.push("events/create");
-          }}
-        >
-          ADD New event
-        </button>
-      </section>
-      <div>
-        {allEvents
-          .filter(
-            (event) => event.eventDate >= new Date().toISOString().substr(0,10)
-          )
-          .filter(
-            (event) => event.userId === currUser || All.includes(event.userId)
-          )
-          .map((event) => (
-            <EventCard
-              event={event}
-              key={event.id}
-              deleteEvent={deleteEvent}
-              isLoading={isLoading}
-              // getEventWeather={getEventWeather}
-            />
-          ))}
+      <div className="event_section">
+        <section className="card">
+          <button
+            type="button"
+            className="friendBtn addEvent"
+            id="addEvent"
+            onClick={() => {
+              history.push("events/create");
+            }}
+          >
+            ADD New event
+          </button>
+        </section>
+        <div>
+          {allEvents
+            .filter(
+              (event) =>
+                event.eventDate >= new Date().toISOString().substr(0, 10)
+            )
+            .filter(
+              (event) => event.userId === currUser || All.includes(event.userId)
+            )
+            .map((event) => (
+              <EventCard
+                event={event}
+                key={event.id}
+                deleteEvent={deleteEvent}
+                isLoading={isLoading}
+                // getEventWeather={getEventWeather}
+              />
+            ))}
+        </div>
       </div>
     </>
   );
