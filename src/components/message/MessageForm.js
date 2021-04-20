@@ -76,12 +76,12 @@ export const MessageForm = ({getAndSetMessages}) => {
 
 
     return (
-        <form className="messageForm">
+        <form className="card">
             <fieldset>
                 <textarea type="textarea" id="messagetxt" onChange={handleControlledInputChange} value={message.messagetxt} required autoFocus className="form-control" />
             </fieldset>
             <input type="hidden" name="userId" value={currentUser}></input>
-            <button className="btn btn-primary"
+            <button className="friendBtn"
                 onClick={handleClickPost}>
                 Send
             </button>

@@ -70,14 +70,14 @@ export const TaskEditForm = () => {
                         <button
                             type="button" disabled={isLoading}
                             onClick={updateExistingTask}
-                            className="btn btn-primary"
+                            className="friendBtn"
                         >Update</button>
                     </div>
                     <div className="">
                         <button
                             type="button" disabled={isLoading}
-                            onClick={null}
-                            className="btn btn-primary"
+                            onClick={() => history.push("/tasks")}
+                            className="btn_Cancel"
                         >Cancel</button>
                     </div>
             </form>

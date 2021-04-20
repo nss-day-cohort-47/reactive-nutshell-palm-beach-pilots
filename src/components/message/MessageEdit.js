@@ -6,7 +6,7 @@ export const MessageEdit = () => {
     const [message, setMessage] = useState({ messagetxt: "" });
     const [isLoading, setIsLoading] = useState(false);
 
-    const { messageId }  = useParams();
+    const { messageId } = useParams();
 
     const history = useHistory();
 
@@ -26,7 +26,7 @@ export const MessageEdit = () => {
             userId: message.userId,
             recepientId: message.recepientId
         }
-    
+
         updateMessage(editedMessage)
             .then(() => history.push("/messages")
             )
@@ -43,15 +43,25 @@ export const MessageEdit = () => {
 
     return (
         <>
-            <textarea   type="textarea"
+            <form className="messageForm">
+                <fieldset>
+                    <textarea type="textarea"
                         required
                         onChange={handleFieldChange}
                         id="messagetxt"
-                        value={message.messagetxt}/>
-            <button
-                type="button" disabled={isLoading}
-                onClick={updateExistingMessage}
-            >Submit</button>
+                        value={message.messagetxt} />
+                </fieldset>
+                <button
+                    className="friendBtn"
+                    type="button" disabled={isLoading}
+                    onClick={updateExistingMessage}
+                >Submit</button>
+                <button
+                    className="btn_Cancel"
+                    type="button" disabled={isLoading}
+                    onClick={() => history.push('/messages')}
+                >Cancel</button>
+            </form>
         </>
     )
 }

@@ -51,8 +51,10 @@ export const TaskForm = () => {
                         value={task.completionDate}
                         onChange={handleControlledInputChange}></input>
                 <button onClick={handleClickSaveAnimal}
+                        className="friendBtn"
                         >Add</button>
                 <button onClick={() => history.push("/tasks")}
+                        className="btn_Cancel"
                         >Cancel</button>
             </form>
         </>
