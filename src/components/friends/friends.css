@@ -146,6 +146,7 @@
 }
 .event {
   padding-left: 30%;
+  /* background-color: mediumvioletred; */
 }
 .Sidebar{
   margin-left: 1rem;
@@ -157,3 +158,5 @@
   text-align: left;
   overflow-wrap: break-word;
 }
+
+

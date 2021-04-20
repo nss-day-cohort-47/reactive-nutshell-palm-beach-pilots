@@ -1,10 +1,10 @@
 import React from "react"
 import { Route } from "react-router-dom"
-import { MessageForm } from "./message/MessageForm"
+// import { MessageForm } from "./message/MessageForm"
 import { MessageList } from "./message/MessageList"
 import { MessageEdit } from "./message/MessageEdit"
 import { FriendsList } from "./friends/FriendsList";
-import { Weather } from "./weather/Weather.js";
+
 import { EventForm } from "./events/EventForm.js";
 import { EventList } from "./events/EventList.js";
 import { EditEvent } from "./events/EventEdit.js"
@@ -23,7 +23,7 @@ export const ApplicationViews = () => {
       </Route>
 
       <Route path="/friends">
-        {/* Render the component for list of friends */} 
+        {/* Render the component for list of friends */}
         <FriendsList />
       </Route>
 
@@ -53,12 +53,18 @@ export const ApplicationViews = () => {
       </Route>
 
       <Route exact path="/events">
+        {/* Render the component for the user's list of events */}
         {<EventList />}
       </Route>
-
-      <Route path="/events/create">{<EventForm />}</Route>
-      <Route path="/events/:eventId(\d+)/edit">{<EditEvent />}</Route>
-      {/* <Route path="/events/:eventId(\d+)/weather"><EventWeather /></Route> */}
+      <Route path="/events/create">
+        {/* Render the component form to add event */}
+        {<EventForm />}
+      </Route>
+      <Route path="/events/:eventId(\d+)/edit">
+        {/* Render the component form to edit event */}
+        {<EditEvent />}
+      </Route>
+      
     </>
   );
 }

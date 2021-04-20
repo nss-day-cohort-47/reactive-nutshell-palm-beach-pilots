@@ -33,10 +33,10 @@ export const Weather = () => {
       <div className="card weather">
         <div>
           <h3>{weather.name}</h3>
-          <p>{weather.main?.temp}&#8457;</p>
+          <p>{Math.round(+(weather.main?.temp))}&#8457;</p>
 
           <p>{weather.weather[0]?.description?.toUpperCase()}</p>
-          <p>{weather.wind?.speed} mph</p>
+          <p>{Math.round(+(weather.wind?.speed))} mph</p>
         </div>
 
         
